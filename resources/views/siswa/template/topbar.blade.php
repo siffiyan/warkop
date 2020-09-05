@@ -32,7 +32,7 @@
 							</li>
 							<li>
 								<a href="/siswa/transaksi">Transaksi</a>
-							</li>						
+							</li>								
 						</ul>		 
 					</div>		 
 					<ul class="nav header-navbar-rht">
@@ -54,7 +54,7 @@
 										<p class="text-muted mb-0">Siswa</p>
 									</div>
 								</div>
-								<a class="dropdown-item" href="/siswa/profil">Profil</a>
+								<a class="dropdown-item" href="#">Change Password</a>
 								<a class="dropdown-item" href="/siswa/logout">Logout</a>
 							</div>
 						</li>

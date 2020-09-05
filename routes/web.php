@@ -87,6 +87,8 @@ Route::prefix('siswa')->group(function () {
 	Route::post('register','Siswa\AuthController@register_action');
 
 	Route::get('dashboard','Siswa\DashboardController@index');
+	Route::get('profile','Siswa\DashboardController@profile')->name('siswa.profile');
+	Route::put('update_profile','Siswa\DashboardController@update_profile')->name('siswa.update_profile');
 
 	Route::get('cariguru', 'Siswa\CariguruController@index');
 	Route::get('cariguru/filter/{jenjang}/{kurikulum}', 'Siswa\CariguruController@filter_mapel');
@@ -98,6 +100,8 @@ Route::prefix('siswa')->group(function () {
 	Route::post('cariguru/lanjutkan_pembayaran', 'Siswa\CariguruController@pembayaran');
 
 	Route::get('transaksi', 'Siswa\TransaksiController@index');
+	Route::get('pembayaran','Siswa\TransaksiController@pembayaran')->name('siswa.pembayaran');
+	Route::get('pembayaran/detail/{id}','Siswa\TransaksiController@detail_pembayaran')->name('siswa.pembayaran.detail');
 
 });
 

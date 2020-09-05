@@ -25,10 +25,10 @@
 <td>{{$r->judul}}</td>
 <td class="text-center">
 	<span class="reject">{{$r->status}}</span>
-	<span class="pending">Info Pembayaran</span>
+	<a href="{{route('siswa.pembayaran.detail',$r->id)}}"><span class="pending" style="cursor: pointer">Info Pembayaran</span></a>
 </td>
 <td class="text-center">
-	<button type="button" class="btn btn-outline-primary active">Konfirmasi Pembayaran</button>
+	<a href="{{route('siswa.pembayaran')}}" class="btn btn-outline-primary active">Konfirmasi Pembayaran</a>
 </td>
 </tr>
 @endforeach
@@ -40,5 +40,4 @@
 </div>
 </div>
 </div>
-
 @endsection

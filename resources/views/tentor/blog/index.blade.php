@@ -71,8 +71,10 @@
                     @endforeach
                 </div>
                     @else
-                    <div style="border:2px dashed black;padding: 25px;text-align: center;">
-                        Anda belum memiliki artikel/ blog
+                    <div class="col-md-12">
+                        <div style="border:2px dashed black;padding: 25px;text-align: center;">
+                            Anda belum memiliki artikel/ blog
+                        </div>
                     </div>
                     @endif
     

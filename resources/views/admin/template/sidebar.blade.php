@@ -28,6 +28,9 @@
 </li>
 <li> 
     <a href="/admin/blog/dashboard"><span>Blog</span></a>
+</li>  
+<li> 
+    <a href="{{route('transaksi.index')}}"><span>Transaksi</span></a>
 </li>    
 </ul>
 </div>

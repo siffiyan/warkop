@@ -191,13 +191,13 @@
                     <div class="col-md-5 col-sm-12">
                         <div class="form-group">
                             <label>Tanggal dan Waktu Pertemuan `+i+`</label>
-                            <input class="form-control" type="text" id="tanggal_pertemuan${i-1}">
+                            <input class="form-control" type="date" id="tanggal_pertemuan${i-1}">
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label>Jumlah Orang `+i+`</label>
-                            <input class="form-control" type="number" id="jumlah_orang${i-1}">
+                            <input class="form-control" type="number" id="jumlah_orang${i-1}" onkeypress="validate(event)">
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
@@ -214,6 +214,24 @@
                 counter++;
 
             }
+        }
+
+        function validate(evt) {
+        var theEvent = evt || window.event;
+
+        // Handle paste
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+        // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[1-9]|\./;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault) theEvent.preventDefault();
+        }
         }
 
         $('#jumlah_pertemuan').keyup(function(){

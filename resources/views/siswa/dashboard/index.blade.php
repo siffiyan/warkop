@@ -21,8 +21,8 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="user-info-cont">
-                            <h4 class="usr-name">Jonathan Doe</h4>
-                            <p class="mentor-type">English Literature (M.A)</p>
+                            <h4 class="usr-name">{{session()->get('nama')}}</h4>
+                            <p class="mentor-type">Siswa</p>
                         </div>
                     </div>
                     <div class="progress-bar-custom">
@@ -53,8 +53,5 @@
     </div>
 
 </div>
-
-@endsection
-
 
 @endsection

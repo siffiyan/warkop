@@ -23,6 +23,8 @@ Route::prefix('admin')->group(function () {
 	Route::put('manajemen_user/update','Admin\ManajemenUserController@update');
 	Route::post('manajemen_user','Admin\ManajemenUserController@store');
 
+	Route::get('transaksi','Admin\TransaksiController@index')->name('transaksi.index');
+
 	Route::prefix('setting')->group(function () {
 
 		Route::get('share_profit','Admin\ShareProfitController@index');
@@ -39,7 +41,6 @@ Route::prefix('admin')->group(function () {
 		Route::get('biaya_les/{id}/edit','Admin\BiayaLesController@edit');
 		Route::put('biaya_les/update','Admin\BiayaLesController@update');
 		Route::delete('biaya_les','Admin\BiayaLesController@destroy');
-
 	});
 
 	Route::prefix('pembelajaran')->group(function () {

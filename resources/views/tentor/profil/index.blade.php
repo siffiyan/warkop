@@ -26,24 +26,30 @@
 <form action="/tentor/profil" method="post" enctype="multipart/form-data">
 @csrf
 @method('PUT')
+
+<div class="row">
+	<div class="col-12 col-md-5"></div>
+	<div class="col-12 col-md-2">
+		<img src="{{asset('foto_guru/'.$user->foto_profil)}}" width="150">
+	</div>
+	<div class="col-12 col-md-5"></div>
+	<div class="col-12 col-md-4"></div>
+	<div class="col-12 col-md-4 mt-2">
+	<div class="form-group">
+	<input type="file" name="foto_profil" class="form-control">
+	</div>
+	</div>
+	<div class="col-12 col-md-4"></div>
+</div>
 <div class="row form-row">
-
-<div class="col-12 col-md-6">
-<div class="form-group">
-<label>Foto Profil</label>
-<input type="file" name="foto_profil" class="form-control">
-</div>
-</div>
-
+{{--
 <div class="col-12 col-md-2">
 </div>
 
-<div class="col-12 col-md-2">
-<img src="{{asset('foto_guru/'.$user->foto_profil)}}" width="150">
-</div>
+
 
 <div class="col-12 col-md-2">
-</div>
+</div> --}}
 
 
 <div class="col-12 col-md-4" style="margin-top: 15px;">

@@ -33,6 +33,7 @@
                                 <div class="form-group">
                                     <label>Jumlah Pertemuan</label>
                                     <input class="form-control" type="number" value="1" id="jumlah_pertemuan">
+                                    <input type="hidden" id="pilihan_guru" value="{{$pilihan_guru}}">
                                 </div>
                             </div>
                         </div>
@@ -283,6 +284,7 @@
        var jenjang_id = $('#jenjang_id').val();
        var kurikulum_id = $('#kurikulum_id').val();
        var mapel_id = $('#mapel_id').val();
+       var pilihan_guru = $('#pilihan_guru').val();
 
         var jumlah_orang = [];
         var durasi_pertemuan = [];
@@ -308,7 +310,8 @@
             url: '/siswa/cariguru/lanjutkan_pembayaran',
             type: 'post',
             data:{_token:_token,last_price:last_price,jenjang_id:jenjang_id,kurikulum_id:kurikulum_id,mapel_id:mapel_id,
-                jumlah_orang:jumlah_orang,durasi_pertemuan:durasi_pertemuan,tanggal_pertemuan:tanggal_pertemuan,harga:harga},
+                jumlah_orang:jumlah_orang,durasi_pertemuan:durasi_pertemuan,tanggal_pertemuan:tanggal_pertemuan,harga:harga,
+                pilihan_guru:pilihan_guru},
             dataType: 'json',
             success: function(response){
                $('#button_lanjutkan_pembayaran').attr("disabled", false);

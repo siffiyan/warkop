@@ -48,8 +48,12 @@ class CariguruController extends Controller
     }
 
     public function profil_tentor($id){
+        
+        $data['mitra'] = DB::table('mitra')->where('id',$id)->first();
+        $data['prestasi'] = DB::table('prestasi_mitra')->where('mitra_id',$id)->get();
+        $data['pengalaman'] = DB::table('pengalaman_mengajar_mitra')->where('id',$id)->get(); 
 
-        return view('siswa.cariguru.profil_tentor');
+        return view('siswa.cariguru.profil_tentor',$data);
 
     }
 
@@ -64,6 +68,8 @@ class CariguruController extends Controller
         $data['guru'] = Mitra::select('id','foto_profil','nama','nama_institusi')
                         ->whereIn('id',$pilihan_guru)
                         ->get();
+
+        $data['pilihan_guru'] = $request->pilihan_guru;;
         
         return view('siswa.cariguru.checkout',$data);
 
@@ -111,6 +117,9 @@ class CariguruController extends Controller
        $tanggal_pertemuan = $request->tanggal_pertemuan;
        $harga = $request->harga;
 
+       $pilihan_guru = $request->pilihan_guru;
+       $pilihan_guru = explode("|", $pilihan_guru);
+
        $jenjang = Jenjang::find($jenjang_id);
        $kurikulum = Kurikulum::find($kurikulum_id);
        $mapel = Mapel::find($mapel_id);
@@ -118,6 +127,10 @@ class CariguruController extends Controller
        $judul = 'Les '.$mapel->mata_pelajaran.' '.$kurikulum->kurikulum.' '.$jenjang->jenjang;
 
        $id = DB::table('transaksi')->insertGetId(['judul'=>$judul,'total_biaya'=>$last_price,'status'=>'menunggu pembayaran','murid_id'=>session('id')]);
+
+       $kode_transaksi = date('ymd').str_pad($id, 3, '0', STR_PAD_LEFT);
+
+       DB::table('transaksi')->where('id',$id)->update(["kode_transaksi" => $kode_transaksi]);
 
        foreach ($jumlah_orang as $key => $value) {
            DB::table('transaksi_detail')->insert([
@@ -129,7 +142,12 @@ class CariguruController extends Controller
         ]);
        }
 
-
+       foreach($pilihan_guru as $key => $r){
+        DB::table('transaksi_mitra')->insert([
+            "mitra_id" => $r,
+            "transaksi_id" => $id,
+        ]);
+    }
 
        return response()->json(['status'=>'success']);
 

@@ -25,6 +25,9 @@ Route::prefix('admin')->group(function () {
 
 	Route::get('transaksi','Admin\TransaksiController@index')->name('transaksi.index');
 	Route::post('transaksi/change_status/{status}','Admin\TransaksiController@change_status');
+	Route::get('transaksi/{id}','Admin\TransaksiController@detail');
+	Route::put('transaksi/update_link_meeting','Admin\TransaksiController@update_link_meeting');
+	Route::get('transaksi/{id}/show','Admin\TransaksiController@show');
 
 	Route::prefix('setting')->group(function () {
 
@@ -120,6 +123,8 @@ Route::prefix('tentor')->group(function () {
 	Route::get('dashboard','Tentor\DashboardController@index');
 
 	Route::get('permintaan_les','Tentor\PermintaanLesController@index');
+	Route::get('permintaan_les/{id}','Tentor\PermintaanLesController@detail');
+	Route::put('permintaan_les/ambil','Tentor\PermintaanLesController@ambil');
 
 	Route::get('profil','Tentor\ProfilController@index');
 	Route::put('profil','Tentor\ProfilController@update');

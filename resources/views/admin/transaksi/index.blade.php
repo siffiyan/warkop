@@ -56,7 +56,7 @@ color: #fff;
                             <td>{{$loop->iteration}}</td>
                             <td><a href="/siswa/pembayaran/detail/{{$item->id}}" target="_blank">{{$item->kode_transaksi}}</a></td>
                             <td>{{$item->nama}}</td>
-                            <td class="text-center">{{$item->total_biaya}}</td>
+                            <td class="text-center">{{$item->judul}}</td>
                             <td class="text-center">
                          
                                 <span class="badge badge-pill  @if($item->status == 'menunggu pembayaran') bg-warning @else bg-success @endif inv-badge">{{$item->status}}</span>
@@ -94,7 +94,7 @@ color: #fff;
                             <td>{{$loop->iteration}}</td>
                             <td><a href="/siswa/pembayaran/detail/{{$item->id}}" target="_blank">{{$item->kode_transaksi}}</a></td>
                             <td>{{$item->nama}}</td>
-                            <td class="text-center">{{$item->total_biaya}}</td>
+                            <td class="text-center">{{$item->judul}}</td>
                             <td class="text-center">
                          
                                 <span class="badge badge-pill  @if($item->status == 'menunggu pembayaran') bg-warning @else bg-success @endif inv-badge">{{$item->status}}</span>
@@ -107,11 +107,81 @@ color: #fff;
 
         </div>
 
-         <div class="tab-pane" id="solid-justified-tab3">
+        <div class="tab-pane" id="solid-justified-tab3">
+
+             <div class="table-responsive">
+                <table class="datatable table table-hover table-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Kode Transaksi</th>
+                            <th>Siswa</th>
+                            <th class="text-center">Mata Pelajaran</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                     @foreach ($pending as $item)
+                        <tr>   
+                            <td>{{$loop->iteration}}</td>
+                            <td><a href="/siswa/pembayaran/detail/{{$item->id}}" target="_blank">{{$item->kode_transaksi}}</a></td>
+                            <td>{{$item->nama}}</td>
+                            <td class="text-center">{{$item->judul}}</td>
+                            <td class="text-center">
+                         
+                                <span class="badge badge-pill  @if($item->status == 'menunggu pembayaran') bg-warning @else bg-success @endif inv-badge">{{$item->status}}</span>
+                            </td>
+                            <td class="text-center">
+                                <div class="actions">
+                                    <a href="/admin/transaksi/{{$item->id}}"><button class="btn btn-sm bg-success-light mr-2"> Detail</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
         </div>
 
          <div class="tab-pane" id="solid-justified-tab4">
+
+             <div class="table-responsive">
+                <table class="datatable table table-hover table-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Kode Transaksi</th>
+                            <th>Siswa</th>
+                            <th class="text-center">Mata Pelajaran</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                     @foreach ($berhasil as $item)
+                        <tr>   
+                            <td>{{$loop->iteration}}</td>
+                            <td><a href="/siswa/pembayaran/detail/{{$item->id}}" target="_blank">{{$item->kode_transaksi}}</a></td>
+                            <td>{{$item->nama}}</td>
+                            <td class="text-center">{{$item->judul}}</td>
+                            <td class="text-center">
+                         
+                                <span class="badge badge-pill  @if($item->status == 'menunggu pembayaran') bg-warning @else bg-success @endif inv-badge">{{$item->status}}</span>
+                            </td>
+                            <td class="text-center">
+                                <div class="actions">
+                                    <a href="/admin/transaksi/{{$item->id}}"><button class="btn btn-sm bg-success-light mr-2"> Detail</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
         </div>
 

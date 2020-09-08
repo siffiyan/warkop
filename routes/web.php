@@ -102,7 +102,7 @@ Route::prefix('siswa')->group(function () {
 	Route::post('cariguru/lanjutkan_pembayaran', 'Siswa\CariguruController@pembayaran');
 
 	Route::get('transaksi', 'Siswa\TransaksiController@index');
-	Route::get('pembayaran','Siswa\TransaksiController@pembayaran')->name('siswa.pembayaran');
+	Route::get('pembayaran/{id}','Siswa\TransaksiController@pembayaran')->name('siswa.pembayaran');
 	Route::get('pembayaran/detail/{id}','Siswa\TransaksiController@detail_pembayaran')->name('siswa.pembayaran.detail');
 
 });

@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-md-6">
                                 <p class="invoice-details">
-                                    <strong>Order:</strong> #00{{$total->id}} <br>
+                                    <strong>Order:</strong> {{$total->kode_transaksi}} <br>
                                     <strong>Date:</strong> {{date('d/m/Y')}}
                                 </p>
                             </div>

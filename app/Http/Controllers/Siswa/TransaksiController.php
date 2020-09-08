@@ -17,9 +17,10 @@ class TransaksiController extends Controller
         return view('siswa.transaksi.index',$data);
     }
 
-    public function pembayaran()
+    public function pembayaran($id)
     {
-        return view('siswa.transaksi.pembayaran');
+        $data['kode_transaksi'] = $id;
+        return view('siswa.transaksi.pembayaran',$data);
     }
 
     public function detail_pembayaran($id)

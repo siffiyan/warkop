@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tentor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DB;
 use App\Models\Mitra;
 use App\Models\PengalamanMengajarMitra;
 use App\Models\PilihanMengajarMitra;
@@ -33,7 +34,11 @@ class ProfilController extends Controller
         $data['pendidikan'] = ['SD','SMP','SMA','S1','S2'];
     	$hasil = $data['tahun_awal'];
     	array_unshift($hasil, "Sampai Sekarang");
-    	$data['tahun_akhir'] = $hasil;
+        $data['tahun_akhir'] = $hasil;
+        $data['provinsi'] = DB::table('tbl_provinsi')->get();
+        $data['kota'] = DB::table('tbl_kabkot')->get();
+        $data['kecamatan'] = DB::table('tbl_kecamatan')->get();
+        $data['kelurahan'] = DB::table('tbl_kelurahan')->get();
         return view('tentor.profil.index',$data);
     }
 
@@ -57,6 +62,24 @@ class ProfilController extends Controller
         $data->update($change);
 
         return redirect('/tentor/profil')->with('msg','Data profil berhasil diedit');
+    }
+
+    public function kota($id)
+    {
+        $data = DB::table('tbl_kabkot')->where('provinsi_id',$id)->get();
+        return response()->json($data);
+    }
+
+    public function kecamatan($id)
+    {
+        $data = DB::table('tbl_kecamatan')->where('kabkot_id',$id)->get();
+        return response()->json($data);
+    }
+
+    public function kelurahan($id)
+    {
+        $data = DB::table('tbl_kelurahan')->where('kecamatan_id',$id)->get();
+        return response()->json($data);
     }
 
 }

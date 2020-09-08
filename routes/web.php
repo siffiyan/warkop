@@ -120,6 +120,9 @@ Route::prefix('tentor')->group(function () {
 
 	Route::get('profil','Tentor\ProfilController@index');
 	Route::put('profil','Tentor\ProfilController@update');
+	Route::get('kota/{id}','Tentor\ProfilController@kota');
+	Route::get('kecamatan/{id}','Tentor\ProfilController@kecamatan');
+	Route::get('kelurahan/{id}','Tentor\ProfilController@kelurahan');
 
 	Route::post('pengalaman_mengajar_mitra','Tentor\PengalamanMengajarMitraController@store');
 	Route::get('pengalaman_mengajar_mitra/{id}/edit','Tentor\PengalamanMengajarMitraController@edit');

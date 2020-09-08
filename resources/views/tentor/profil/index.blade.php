@@ -79,40 +79,59 @@
 <div class="col-12 col-md-6">
 <div class="form-group">
 <label>Tanggal Lahir</label>
-<div class="cal-icon">
-<input type="text" class="form-control datetimepicker" name="tanggal_lahir"  value="{{$user->tanggal_lahir}}">
-</div>
+<input type="date" class="form-control" name="tanggal_lahir"  value="{{$user->tanggal_lahir}}">
 </div>
 </div>
 <div class="col-12 col-md-3">
 <div class="form-group">
 <label>Provinsi</label>
-<select class="form-control select">
-
+<select class="form-control select" name="provinsi_id" id="provinsi">
+	<option selected readonly>Pilih Provinsi</option>
+	@foreach ($provinsi as $item)
+		<option value="{{$item->id}}">{{$item->provinsi}}</option>
+	@endforeach
 </select>
 </div>
 </div>
 <div class="col-12 col-md-3">
 <div class="form-group">
 <label>Kota/Kab</label>
-<select class="form-control select">
-
+<select class="form-control select" name="kabkot_id" id="kota">
+	@if(!empty($user->kabkot_id))
+		@foreach ($kota as $item)
+			<option value="{{$item->id}}">{{$item->kabupaten_kota}}</option>
+		@endforeach
+	@else
+		<option selected readonly>Pilih Kota/Kabupaten</option>
+	@endif
 </select>
 </div>
 </div>
 <div class="col-12 col-md-3">
 <div class="form-group">
 <label>Kecamatan</label>
-<select class="form-control select">
-
+<select class="form-control select" name="kecamatan_id" id="kecamatan">
+	@if(!empty($user->kecamatan_id))
+		@foreach ($kecamatan as $item)
+			<option value="{{$item->id}}">{{$item->kecamatan}}</option>
+		@endforeach
+	@else
+		<option selected readonly>Pilih Kecamatan</option>
+	@endif
 </select>
 </div>
 </div>
 <div class="col-12 col-md-3">
 <div class="form-group">
 <label>Kelurahan</label>
-<select class="form-control select">
-
+<select class="form-control select" name="kelurahan_id" id="kelurahan">
+	@if(!empty($user->kelurahan_id))
+		@foreach ($kelurahan as $item)
+			<option value="{{$item->id}}">{{$item->kelurahan}}</option>
+		@endforeach
+	@else
+		<option selected readonly>Pilih Kelurahan</option>
+	@endif
 </select>
 </div>
 </div>
@@ -286,6 +305,74 @@
 @section('js')
 
 <script type="text/javascript">
+
+
+$(document).ready(function(){
+	$('#provinsi').val({{$user->provinsi_id}});
+	$('#kota').val({{$user->kabkot_id}});
+	$('#kecamatan').val({{$user->kecamatan_id}});
+	$('#kelurahan').val({{$user->kelurahan_id}});
+});
+
+$('#provinsi').change(function(){
+	var id = $('#provinsi').val();
+	$.ajax({
+		url: "/tentor/kota/"+id,
+		type: "GET",
+		dataType: 'JSON',
+		success: function( data, textStatus, jQxhr ){
+			$('#kota').empty();
+			$('#kota').append(`<option selected readonly>Pilih Kota/Kabupaten</option>`);
+			$.each(data,function(i,value){
+				$('#kota').append(`<option value="`+value.id+`">`+value.kabupaten_kota+`</option>`);
+			});
+		},
+		error: function( jqXhr, textStatus, errorThrown ){
+			console.log( errorThrown );
+			console.warn(jqXhr.responseText);
+		},
+	});
+});
+
+$('#kota').change(function(){
+	var id = $('#kota').val();
+	$.ajax({
+		url: "/tentor/kecamatan/"+id,
+		type: "GET",
+		dataType: 'JSON',
+		success: function( data, textStatus, jQxhr ){
+			$('#kecamatan').empty();
+			$('#kecamatan').append('<option selected readonly>Pilih Kecamatan</option>');
+			$.each(data,function(i,value){
+				$('#kecamatan').append(`<option value="`+value.id+`">`+value.kecamatan+`</option>`);
+			});
+		},
+		error: function( jqXhr, textStatus, errorThrown ){
+			console.log( errorThrown );
+			console.warn(jqXhr.responseText);
+		},
+	});
+});
+
+$('#kecamatan').change(function(){
+	var id = $('#kecamatan').val();
+	$.ajax({
+		url: "/tentor/kelurahan/"+id,
+		type: "GET",
+		dataType: 'JSON',
+		success: function( data, textStatus, jQxhr ){
+			$('#kelurahan').empty();
+			$('#kelurahan').append('<option selected readonly>Pilih Kecamatan</option>');
+			$.each(data,function(i,value){
+				$('#kelurahan').append(`<option value="`+value.id+`">`+value.kelurahan+`</option>`);
+			});
+		},
+		error: function( jqXhr, textStatus, errorThrown ){
+			console.log( errorThrown );
+			console.warn(jqXhr.responseText);
+		},
+	});
+});
 
 $('#button_tambah_pengalaman_mengajar').click(function(e){
 	e.preventDefault();

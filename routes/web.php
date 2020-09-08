@@ -24,6 +24,7 @@ Route::prefix('admin')->group(function () {
 	Route::post('manajemen_user','Admin\ManajemenUserController@store');
 
 	Route::get('transaksi','Admin\TransaksiController@index')->name('transaksi.index');
+	Route::post('transaksi/change_status/{status}','Admin\TransaksiController@change_status');
 
 	Route::prefix('setting')->group(function () {
 
@@ -117,6 +118,8 @@ Route::prefix('tentor')->group(function () {
 	Route::put('ubah_password_action','Tentor\AuthController@ubah_password_action');
 
 	Route::get('dashboard','Tentor\DashboardController@index');
+
+	Route::get('permintaan_les','Tentor\PermintaanLesController@index');
 
 	Route::get('profil','Tentor\ProfilController@index');
 	Route::put('profil','Tentor\ProfilController@update');

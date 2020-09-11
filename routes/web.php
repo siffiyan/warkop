@@ -108,6 +108,12 @@ Route::prefix('siswa')->group(function () {
 	Route::get('pembayaran/{id}','Siswa\TransaksiController@pembayaran')->name('siswa.pembayaran');
 	Route::get('pembayaran/detail/{id}','Siswa\TransaksiController@detail_pembayaran')->name('siswa.pembayaran.detail');
 
+	Route::get('schedule','Siswa\ScheduleController@index');
+
+	Route::get('penilaian','Siswa\PenilaianController@index')->name('penilaian.index');
+	Route::get('penilaian/{id}','Siswa\PenilaianController@detail')->name('penilaian.detail');
+	Route::post('penilaian','Siswa\PenilaianController@store')->name('penilaian.store');
+
 });
 
 Route::prefix('tentor')->group(function () {
@@ -146,6 +152,16 @@ Route::prefix('tentor')->group(function () {
 	Route::get('pilihan_mengajar_mitra/{id}/edit','Tentor\PilihanMengajarMitraController@edit');
 	Route::put('pilihan_mengajar_mitra','Tentor\PilihanMengajarMitraController@update');
 	Route::delete('pilihan_mengajar_mitra','Tentor\PilihanMengajarMitraController@destroy');
+
+	Route::get('schedule','Tentor\ScheduleController@index');
+	Route::put('schedule','Tentor\ScheduleController@update')->name('tentor.schedule.update');
+
+	Route::get('evaluasi','Tentor\EvaluasiController@index');
+	Route::get('evaluasi/murid/{id}','Tentor\EvaluasiController@detail_murid');
+	Route::post('evaluasi','Tentor\EvaluasiController@store')->name('evaluasi.store');
+
+	Route::get('pencairan','Tentor\PencairanController@index')->name('tentor.pencairan.index');
+	Route::post('pencairan','Tentor\PencairanController@store')->name('tentor.pencairan.store');
 
 	Route::prefix('blog')->group(function() {
 		Route::delete('delete','Tentor\BlogController@destroy');

@@ -31,6 +31,7 @@ class AuthController extends Controller
 				Session::put('id',$data->id);
 				Session::put('nama',$data->nama);
                 Session::put('login',TRUE);
+                Session::put('role','tentor');
 
                return redirect('/tentor/dashboard');
 
@@ -59,6 +60,7 @@ class AuthController extends Controller
 		$request->session()->forget('id');
 		$request->session()->forget('nama');
         $request->session()->forget('login');
+        $request->session()->forget('role');
         $request->session()->flush();
         
 	    return redirect('/tentor/login')->with('success','Anda berhasil logout !');

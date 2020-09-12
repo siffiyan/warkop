@@ -163,6 +163,11 @@ Route::prefix('tentor')->group(function () {
 	Route::get('pencairan','Tentor\PencairanController@index')->name('tentor.pencairan.index');
 	Route::post('pencairan','Tentor\PencairanController@store')->name('tentor.pencairan.store');
 
+	Route::get('bank','Tentor\BankController@index')->name('tentor.bank.index');
+	Route::post('bank','Tentor\BankController@store')->name('tentor.bank.store');
+	Route::get('bank/detail/{id}','Tentor\BankController@detail');
+	Route::delete('bank/delete/{id}','Tentor\BankController@delete')->name('tentor.bank.delete');
+
 	Route::prefix('blog')->group(function() {
 		Route::delete('delete','Tentor\BlogController@destroy');
 	});

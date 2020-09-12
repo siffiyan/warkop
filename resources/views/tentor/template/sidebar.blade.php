@@ -23,10 +23,13 @@
 	</div>
 	<div class="custom-sidebar-nav">
 		<ul>
-			<li><a href="/tentor/dashboard" class="active"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
-			<li><a href="/tentor/permintaan_les"><i class="fas fa-star"></i>Permintaan Les <span><i class="fas fa-chevron-right"></i></span></a></li>
-			<li><a href="{{route('blog.index')}}"><i class="fab fa-blogger-b"></i>Blog <span><i class="fas fa-chevron-right"></i></span></a></li>
-			<li><a href="/tentor/profil"><i class="fas fa-user-cog"></i>Profile <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a href="/tentor/dashboard" @if(Request::segment(2) == 'dashboard')class="active" @endif><i class="fas fa-home"></i>Dashboard<span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a href="/tentor/permintaan_les"  @if(Request::segment(2) == 'permintaan_les')class="active" @endif><i class="fas fa-star"></i>Permintaan Les <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a href="/tentor/schedule"  @if(Request::segment(2) == 'schedule')class="active" @endif><i class="fas fa-user"></i>Schedule <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a href="/tentor/evaluasi"  @if(Request::segment(2) == 'evaluasi')class="active" @endif><i class="fas fa-user"></i>Evaluasi Belajar <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a href="{{route('tentor.pencairan.index')}}"  @if(Request::segment(2) == 'pencairan')class="active" @endif><i class="fas fa-wallet"></i>Pencairan Dana <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a href="{{route('blog.index')}}"  @if(Request::segment(2) == 'blog')class="active" @endif><i class="fab fa-blogger-b"></i>Blog <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a href="/tentor/profil" @if(Request::segment(2) == 'profil')class="active" @endif><i class="fas fa-user-cog"></i>Profile <span><i class="fas fa-chevron-right"></i></span></a></li>
 		</ul>
 	</div>
 </div>

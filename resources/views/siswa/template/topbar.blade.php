@@ -32,6 +32,12 @@
 							</li>
 							<li>
 								<a href="/siswa/transaksi">Transaksi</a>
+							</li>	
+							<li>
+								<a href="/siswa/schedule">Schedule</a>
+							</li>		
+							<li>
+								<a href="{{route('penilaian.index')}}">Penilaian Tentor</a>
 							</li>								
 						</ul>		 
 					</div>		 
@@ -54,6 +60,7 @@
 										<p class="text-muted mb-0">Siswa</p>
 									</div>
 								</div>
+								<a class="dropdown-item" href="{{route('siswa.profile')}}">Profile</a>
 								<a class="dropdown-item" href="#">Change Password</a>
 								<a class="dropdown-item" href="/siswa/logout">Logout</a>
 							</div>

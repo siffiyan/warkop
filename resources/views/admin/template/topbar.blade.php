@@ -45,13 +45,13 @@
 									<img src="{{asset('template/mentoring/html/admin/assets/img/profiles/avatar-11.jpg')}}" alt="User Image" class="avatar-img rounded-circle">
 								</div>
 								<div class="user-text">
-									<h6>Allen Davis</h6>
-									<p class="text-muted mb-0">Administrator</p>
+									<h6>{{session('nama')}}</h6>
+									<p class="text-muted mb-0">Admin</p>
 								</div>
 							</div>
 							<a class="dropdown-item" href="profile.html">My Profile</a>
 							<a class="dropdown-item" href="settings.html">Settings</a>
-							<a class="dropdown-item" href="login.html">Logout</a>
+							<a class="dropdown-item" href="/admin/logout">Logout</a>
 						</div>
 					</li>
 					<!-- /User Menu -->

@@ -30,7 +30,9 @@ class AuthController extends Controller
 				Session::put('email',$data->email);
 				Session::put('nama',$data->nama);
 				Session::put('id',$data->id);
+				Session::put('role','siswa');
                 Session::put('login',TRUE);
+
 
                return redirect('/siswa/dashboard');
 
@@ -58,6 +60,7 @@ class AuthController extends Controller
 		$request->session()->forget('email');
 		$request->session()->forget('nama');
 		$request->session()->forget('id');
+        $request->session()->forget('login');
         $request->session()->forget('login');
         $request->session()->flush();
         

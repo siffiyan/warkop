@@ -31,7 +31,10 @@
 </li>  
 <li> 
     <a href="{{route('transaksi.index')}}"><span>Transaksi</span></a>
-</li>    
+</li>
+<li> 
+    <a href="/admin/link_guru_meet"><span>Link Guru Meet</span></a>
+</li>       
 </ul>
 </div>
 </div>

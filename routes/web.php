@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::prefix('admin')->group(function () {
 
+	Route::get('login','Admin\AuthController@login');
+	Route::post('login','Admin\AuthController@login_action');
+	Route::get('logout','Admin\AuthController@logout');
+
+Route::group(['middleware' => 'cek_admin'], function () {
+
 	Route::get('dashboard','Admin\DashboardController@index');
+
+	Route::get('link_guru_meet','Admin\LinkGuruMeetController@index');
 
 	Route::get('manajemen_user','Admin\ManajemenUserController@index');
 	Route::delete('manajemen_user/delete','Admin\ManajemenUserController@destroy');
@@ -83,13 +92,18 @@ Route::prefix('admin')->group(function () {
 
 });
 
+});
+
 Route::prefix('siswa')->group(function () {
 	
 	Route::get('login','Siswa\AuthController@login');
 	Route::post('login','Siswa\AuthController@login_action');
-	Route::get('logout','Siswa\AuthController@logout');
 	Route::get('register','Siswa\AuthController@register');
 	Route::post('register','Siswa\AuthController@register_action');
+
+Route::group(['middleware' => 'cek_siswa'], function () {
+
+	Route::get('logout','Siswa\AuthController@logout');
 
 	Route::get('dashboard','Siswa\DashboardController@index');
 	Route::get('profile','Siswa\DashboardController@profile')->name('siswa.profile');
@@ -116,15 +130,20 @@ Route::prefix('siswa')->group(function () {
 
 });
 
+});
+
 Route::prefix('tentor')->group(function () {
 
-	Route::resource('blog', 'Tentor\BlogController');
-
 	Route::get('login','Tentor\AuthController@login');
-	Route::post('login','Tentor\AuthController@login_action');
+	Route::post('login','Tentor\AuthController@login_action');\
+
+Route::group(['middleware' => 'cek_tentor'], function () {
+
 	Route::get('logout','Tentor\AuthController@logout');
 	Route::get('ubah_password','Tentor\AuthController@ubah_password');
 	Route::put('ubah_password_action','Tentor\AuthController@ubah_password_action');
+
+		Route::resource('blog', 'Tentor\BlogController');
 
 	Route::get('dashboard','Tentor\DashboardController@index');
 
@@ -171,6 +190,8 @@ Route::prefix('tentor')->group(function () {
 	Route::prefix('blog')->group(function() {
 		Route::delete('delete','Tentor\BlogController@destroy');
 	});
+
+});
 
 });
 

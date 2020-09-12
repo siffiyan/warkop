@@ -126,7 +126,7 @@ class CariguruController extends Controller
 
        $judul = 'Les '.$mapel->mata_pelajaran.' '.$kurikulum->kurikulum.' '.$jenjang->jenjang;
 
-       $id = DB::table('transaksi')->insertGetId(['judul'=>$judul,'total_biaya'=>$last_price,'status'=>'menunggu pembayaran','murid_id'=>session('id')]);
+       $id = DB::table('transaksi')->insertGetId(['judul'=>$judul,'mapel_id'=>$mapel_id,'total_biaya'=>$last_price,'status'=>'menunggu pembayaran','murid_id'=>session('id')]);
 
        $kode_transaksi = date('ymd').str_pad($id, 3, '0', STR_PAD_LEFT);
 

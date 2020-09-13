@@ -20,7 +20,7 @@
 <tr>
 <th>No</th>
 <th>Tanggal</th>
-<th>Jam Mulai</th>
+<th>Waktu</th>
 <th>Durasi</th>
 <th>Jenjang</th>
 <th>Mata Pelajaran</th>
@@ -33,7 +33,7 @@
 <tr>
 	<td>{{$loop->iteration}}</td>
 	<td>{{$r->tanggal_pertemuan}}</td>
-	<td>-</td>
+	<td>{{$r->waktu}} {{$r->zona}}</td>
 	<td>{{$r->durasi}}</td>
 	<td>{{$r->jenjang}}</td>
 	<td>{{$r->mata_pelajaran}}</td>

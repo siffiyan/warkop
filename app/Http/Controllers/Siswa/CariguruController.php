@@ -115,6 +115,8 @@ class CariguruController extends Controller
        $jumlah_orang = $request->jumlah_orang;
        $durasi_pertemuan = $request->durasi_pertemuan;
        $tanggal_pertemuan = $request->tanggal_pertemuan;
+       $waktu_pertemuan = $request->waktu_pertemuan;
+       $zona = $request->zona;
        $harga = $request->harga;
 
        $pilihan_guru = $request->pilihan_guru;
@@ -133,11 +135,15 @@ class CariguruController extends Controller
        DB::table('transaksi')->where('id',$id)->update(["kode_transaksi" => $kode_transaksi]);
 
        foreach ($jumlah_orang as $key => $value) {
+
+        // $waktu_pertemuan[$key] = date_format($waktu_pertemuan[$key],"H:i:s");
            DB::table('transaksi_detail')->insert([
             'tanggal_pertemuan'=>$tanggal_pertemuan[$key],
             'jumlah_orang'=>$value,
             'durasi'=>$durasi_pertemuan[$key],
             'biaya'=>$harga[$key],
+            'waktu'=>$waktu_pertemuan[$key],
+            'zona'=>$zona[$key],
             'transaksi_id'=>$id
         ]);
        }

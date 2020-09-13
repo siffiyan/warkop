@@ -78,7 +78,8 @@
                     <thead>
                         <tr>
                             <th class="text-center">#</th>
-                            <th class="text-center">Tanggal dan Waktu</th>
+                            <th class="text-center">Tanggal</th>
+                            <th class="text-center">Waktu</th>
                             <th class="text-center">Jumlah Orang</th>
                             <th class="text-center">Durasi</th>
                             <th class="text-center">Action</th>
@@ -90,6 +91,7 @@
                        <tr>
                        		<td class="text-center">{{$loop->iteration}}</td>
                        		<td class="text-center">{{$r->tanggal_pertemuan}}</td>
+                          <td class="text-center">{{$r->waktu}} {{$r->zona}}</td>
                        		<td class="text-center">{{$r->jumlah_orang}}</td>
                        		<td class="text-center">{{$r->durasi}} menit</td>
                        		<td class="text-center">

@@ -24,6 +24,8 @@ Route::group(['middleware' => 'cek_admin'], function () {
 
 	Route::get('dashboard','Admin\DashboardController@index');
 
+	Route::get('guru_terbaik','Admin\GuruTerbaikController@index');
+
 	Route::get('link_guru_meet','Admin\LinkGuruMeetController@index');
 
 	Route::get('manajemen_user','Admin\ManajemenUserController@index');

@@ -35,10 +35,22 @@ class BankController extends Controller
         return response()->json($data);
     }
 
-    public function delete($id)
+    public function update(Request $request)
     {
-        DB::table('rekening')->where('id',$id)->delete();
+        DB::table('rekening')->where('id',$request->id)->update([
+            "nama_bank" => $request->nama_bank,
+            "cabang" => $request->cabang,
+            "nomor_rekening" => $request->nomor_rekening,
+            "nama_pemilik" => $request->nama_pemilik,
+        ]);
 
-        return response()->back()->with('msg','Data rekening berhasil dihapus');
+        return redirect()->back()->with('msg','data rekening berhasil diedit');
+    }
+
+    public function delete(Request $request)
+    {
+        DB::table('rekening')->where('id',$request->id)->delete();
+
+        return redirect()->back()->with('msg','Data rekening berhasil dihapus');
     }
 }

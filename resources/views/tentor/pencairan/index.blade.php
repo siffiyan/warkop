@@ -34,7 +34,7 @@
                                     <th>TANGGAL</th>
                                     <th>JUMLAH PENCAIRAN</th>
                                     <th>KE REKENING</th>
-                                    <th>NAMA PEMILIK REKENING</th>
+                                    <th class="text-center">NAMA PEMILIK REKENING</th>
                                     <th class="text-center">STATUS</th>
                                 </tr>
                             </thead>
@@ -45,15 +45,16 @@
                                         <td>{{date('d/m/Y', strtotime($item->tanggal))}}</td>
                                         <td>{{"Rp " . number_format($item->jumlah,0,',','.')}}</td>
                                         <td>{{$item->nama_bank}}</td>
-                                        <td>{{$item->nama_pemilik}}</td>
+                                        <td class="text-center">{{$item->nama_pemilik}}</td>
                                         <td class="text-center">
-                                            @if($item->status == 'diproses')
-                                            <span class="badge badge-warning text-white">{{$item->status}}</span>
-                                            @elseif($item->Status == 'berhasil')
-                                            <span class="badge badge-success text-white">{{$item->status}}</span>
+                                            @if($item->status == 'berhasil')
+                                                <span class="badge badge-success">{{$item->status}}</span>
+                                            @elseif($item->status == 'diproses')
+                                                <span class="badge badge-warning text-white">{{$item->status}}</span>
                                             @else
-                                            <span class="badge badge-danger text-white">{{$item->status}}</span>
+                                                <span class="badge badge-danger">{{$item->status}}</span>
                                             @endif
+
                                         </td>
                                     </tr>
                                 @endforeach

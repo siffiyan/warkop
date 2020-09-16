@@ -13,7 +13,6 @@ class EvaluasiController extends Controller
         $data['berhasil'] =DB::table('transaksi_detail as a')
                                 ->join('transaksi as b','a.transaksi_id','b.id')
                                 ->join('murid as c','b.murid_id','c.id')
-                                ->select(DB::raw('if(a.id = (SELECT transaksi_detail_id FROM evaluasi_belajar_siswa where transaksi_detail_id = id)),"YES","NO" as a'))
                                 ->select('a.*','b.judul','c.nama','c.email')
                                 ->where('a.les','YES')
                                 ->where('a.mitra_id',session('id'))
@@ -49,7 +48,9 @@ class EvaluasiController extends Controller
             "penilaian" => $request->penilaian,
         ]);
 
-        DB::table('transaksi_detail')->where('id',$request->transaksi_id)->update(["evaluasi_murid" => 'YES']);
+        $a = $request->pemahaman + $request->konsentrasi / 2;
+
+        DB::table('transaksi_detail')->where('id',$request->transaksi_id)->update(["evaluasi_murid" => $a]);
 
         return redirect()->back()->with('msg','Data Evaluasi belajar berhasil disimpan');
     }

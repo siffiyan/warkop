@@ -67,8 +67,8 @@
                 type: "GET",
                 dataType: 'JSON',
                 success: function( data, textStatus, jQxhr ){
-                    console.log(data);
                     $('#modal_edit_bank').modal('show');
+                    $('#id').val(data.id);
                     $('#nama_bank').val(data.nama_bank);
                     $('#cabang').val(data.cabang);
                     $('#nomor_rekening').val(data.nomor_rekening);
@@ -79,6 +79,11 @@
                 console.warn(jqXhr.responseText);
                 },
             });
+        }
+
+        function delete_rekening(id){
+            $('#modal_delete').modal('show');
+            $('#id_delete').val(id);
         }
     </script>
 @endsection
@@ -99,7 +104,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>Bank</label>
-                            <select name="nama_bank" id="nama_bank" class="form-control">
+                            <select name="nama_bank" class="form-control">
                                 @foreach ($bank as $item)
                                     <option value="{{$item->name}}">{{$item->name}}</option>
                                 @endforeach
@@ -109,19 +114,19 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>Cabang</label>
-                            <input type="text" class="form-control" name="cabang" id="cabang" required>
+                            <input type="text" class="form-control" name="cabang"required>
                         </div>
                     </div>   
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>No Rekening</label>
-                            <input type="text" class="form-control" name="nomor_rekening" id="nomor_rekening" required>
+                            <input type="text" class="form-control" name="nomor_rekening"required>
                         </div>
                     </div>   
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>Nama Pemilik</label>
-                            <input type="text" class="form-control" name="nama_pemilik" id="nama_pemilik" required>
+                            <input type="text" class="form-control" name="nama_pemilik"required>
                         </div>
                     </div>      
                     <div class="col-sm-12">
@@ -136,6 +141,10 @@
 
 <div class="modal fade" id="modal_edit_bank" aria-hidden="true" role="dialog">
     <div class="modal-dialog" role="document" >
+        <form action="{{route('tentor.bank.update')}}" method="POST">
+            @method('put')
+            @csrf
+        <input type="hidden" name="id" id="id">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Bank</h5>
@@ -179,14 +188,18 @@
                 </div>   
             </div>
         </div>
+        </form>
     </div>
 </div>
 
 <!-- Delete Model -->
-<div class="modal fade" id="delete_modal" role="dialog" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="modal_delete" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content text-center">
             <div class="modal-body">
+                <form action="{{route('tentor.bank.delete')}}" method="POST">
+                    @method('delete')
+                    @csrf
                 <div class="form-content p-2">
                     <h4 class="modal-title">Delete</h4>
                     <input type="hidden" name="id" id="id_delete">
@@ -194,6 +207,7 @@
                     <button type="submit" class="btn btn-primary">Delete </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

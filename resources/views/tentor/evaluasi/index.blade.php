@@ -54,7 +54,7 @@
                                     </h2>
                                 </td>
                                 <td class="text-center">
-                                    @if($item->evaluasi_murid == 'NO')
+                                    @if($item->evaluasi_murid == 0)
                                     <button type="button" class="btn btn-sm bg-info-light" onclick="evaluasi({{$item->id}})">Beri Evaluasi</button>
                                     @else
                                     <button type="button" class="btn btn-sm bg-info-light" onclick="evaluasi({{$item->id}})">Lihat Review</button>

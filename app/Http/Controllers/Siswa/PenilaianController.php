@@ -47,7 +47,7 @@ class PenilaianController extends Controller
             "keterangan" => $request->keterangan
         ]);
 
-        DB::table('transaksi_detail')->where('id',$request->transaksi_id)->update(["evaluasi_mitra" => 'YES']);
+        DB::table('transaksi_detail')->where('id',$request->transaksi_id)->update(["evaluasi_mitra" => $request->penilaian]);
 
         return redirect()->back()->with('msg','Data Penilaian berhasil disimpan');
     }

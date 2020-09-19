@@ -58,6 +58,7 @@
 						<tr>
 							<td>`+(i+1)+`</td>
 							<td>`+value.tanggal_pertemuan+`</td>
+							<td>`+value.waktu+` `+value.zona+`</td>
 							<td>`+value.jumlah_orang+`</td>
 							<td>`+value.durasi+` menit</td>
 						</tr>
@@ -96,7 +97,8 @@
 <thead>
 <tr>
 <th>No</th>
-<th>Tanggal dan Waktu</th>
+<th>Tanggal</th>
+<th>Waktu</th>
 <th>Jumlah Orang</th>
 <th>Durasi</th>
 </tr>

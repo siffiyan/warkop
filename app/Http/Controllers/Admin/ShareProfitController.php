@@ -28,6 +28,7 @@ class ShareProfitController extends Controller
 		}
 
 		$data = ShareProfit::findOrFail($id);
+		$data['admin_id'] = session('id');
 		$data->update($request->all());
 
 		return redirect('/admin/setting/share_profit')->with('msg','settingan profit berhasil di update');

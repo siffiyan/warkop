@@ -24,7 +24,9 @@ class JenjangController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $insert = Jenjang::create($request->all());
+        $data = $request->all();
+        $data['admin_id'] = session('id');
+        $insert = Jenjang::create($data);
         if($insert){
             return redirect()->back()->with('msg','data Jenjang berhasil ditambahkan');
         }else{
@@ -59,6 +61,7 @@ class JenjangController extends Controller
 
         $jenjang = Jenjang::findOrFail($id);
         $jenjang->jenjang = $request->jenjang;
+        $jenjang->admin_id = session('id');
         $jenjang->update();
 
         return redirect()->back()->with('msg','data Jenjang berhasil diedit');

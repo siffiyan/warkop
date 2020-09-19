@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::prefix('admin')->group(function () {
 
 	Route::get('login','Admin\AuthController@login');
@@ -23,6 +22,8 @@ Route::prefix('admin')->group(function () {
 Route::group(['middleware' => 'cek_admin'], function () {
 
 	Route::get('dashboard','Admin\DashboardController@index');
+
+	Route::get('guru_terbaik','Admin\GuruTerbaikController@index');
 
 	Route::get('link_guru_meet','Admin\LinkGuruMeetController@index');
 
@@ -103,6 +104,7 @@ Route::group(['middleware' => 'cek_admin'], function () {
 Route::prefix('siswa')->group(function () {
 	
 	Route::get('login','Siswa\AuthController@login');
+	Route::get('verify','Siswa\AuthController@verify');
 	Route::post('login','Siswa\AuthController@login_action');
 	Route::get('register','Siswa\AuthController@register');
 	Route::post('register','Siswa\AuthController@register_action');
@@ -112,8 +114,8 @@ Route::group(['middleware' => 'cek_siswa'], function () {
 	Route::get('logout','Siswa\AuthController@logout');
 
 	Route::get('dashboard','Siswa\DashboardController@index');
-	Route::get('profile','Siswa\DashboardController@profile')->name('siswa.profile');
-	Route::put('update_profile','Siswa\DashboardController@update_profile')->name('siswa.update_profile');
+	Route::get('profile','Siswa\ProfilController@index')->name('siswa.profile');
+	Route::put('update_profile','Siswa\ProfilController@update_profile')->name('siswa.update_profile');
 
 	Route::get('cariguru', 'Siswa\CariguruController@index');
 	Route::get('cariguru/filter/{jenjang}/{kurikulum}', 'Siswa\CariguruController@filter_mapel');

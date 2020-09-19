@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="endless admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, endless admin template, dashboard template, flat admin template, responsive admin template, web app">
@@ -66,22 +67,20 @@
             <div class="col-sm-12 col-xl-6">
               <div class="auth-innerright">
                 <div class="authentication-box">
-                
-                 @if ($message = Session::get('success'))
+
+               @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     {{$message}} 
                 </div>    
-                @endif     
+                @endif      
+              
+                <div class="alert alert-danger" id="for-alert" style="display: none;">
 
-                @if ($message = Session::get('error'))
-                <div class="alert alert-danger">
-                    {{$message}} 
                 </div>    
-                @endif              
-                 
+
                     <div class="card mt-4" style="border-radius: 4px;">
                         <div class="card-body">
-                          <form class="theme-form" action="/siswa/login" method="post">
+                          <form class="theme-form" id="form_login" method="post">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus required="" style="background-color: #F9EFF2; border-color: #F9EFF2;">
@@ -90,7 +89,7 @@
                                 <input class="form-control" placeholder="Password" name="password" type="password" value="" required="" style="background-color: #F9EFF2; border-color: #F9EFF2;">
                             </div>
                             <div class="form-group form-row mt-3 mb-0">
-                              <button class="btn btn-danger btn-block" type="submit">LOGIN</button>
+                              <button class="btn btn-danger btn-block" type="submit" id="button_login">LOGIN</button>
                               <p style="margin-top: 5px;">Belum punya akun ? <a href="/siswa/register">daftar disini</a></p>
                             </div>
                           </form>
@@ -120,6 +119,55 @@
     <!-- Theme js-->
     <script src="{{asset('login/js/script.js')}}"></script>
     <!-- Plugin used-->
+
+    <script type="text/javascript">
+      
+      $('#form_login').submit(function(e){
+          e.preventDefault();
+
+          $('#button_login').html('LOGIN <i class="fa fa-circle-o-notch fa-spin"></i>');
+          $("#button_login").prop("disabled", true);
+
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+
+          $.ajax({
+            data:$('#form_login').serialize(),
+            url:'/siswa/login',
+            type:'POST',
+            success:function(response){
+
+              console.log(response);
+              $('#button_login').html('LOGIN');
+              $("#button_login").prop("disabled", false);
+
+              if(response.status=='error'){
+
+                  $('#for-alert').show();
+                  $('#for-alert').html(response.message);
+                        
+              }
+
+              else{
+                location.href="/siswa/dashboard";
+              }
+
+            },
+            error:function(){
+              $('#button_login').html('LOGIN');
+              $("#button_login").prop("disabled", false);
+              alert('terjadi error');
+            }
+
+      });
+
+      });
+
+    </script>
+
   </body>
 
 <!-- Mirrored from admin.pixelstrap.com/endless/ltr/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 29 May 2020 19:02:49 GMT -->

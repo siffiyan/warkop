@@ -189,24 +189,40 @@
             counter = 0;
             for(i = 1; i <= pertemuan; i ++){
                 $('#append-pertemuan').append(`
-                    <div class="col-md-5 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
                         <div class="form-group">
-                            <label>Tanggal dan Waktu Pertemuan `+i+`</label>
+                            <label>Tanggal </label>
                             <input class="form-control" type="date" id="tanggal_pertemuan${i-1}">
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-12">
+                     <div class="col-md-2 col-sm-12">
                         <div class="form-group">
-                            <label>Jumlah Orang `+i+`</label>
+                            <label>Waktu</label>
+                            <input class="form-control" type="time" id="waktu_pertemuan${i-1}">
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <div class="form-group">
+                           <label>Zona</label>
+                           <select class="select form-control" id="zona${i-1}">
+                                <option value="WIB">WIB</option>  
+                                <option value="WITA">WITA</option>
+                                 <option value="WIT">WIT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <div class="form-group">
+                            <label>Jumlah</label>
                             <input class="form-control" type="number" id="jumlah_orang${i-1}" onkeypress="validate(event)">
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-2 col-sm-12">
                         <div class="form-group">
-                           <label>Durasi Pertemuan `+i+`</label>
+                           <label>Durasi</label>
                            <select class="select form-control" id="durasi_pertemuan${i-1}">
-                                <option value="90">90 menit</option>  
-                                <option value="120">120 menit</option>
+                                <option value="90">90</option>  
+                                <option value="120">120</option>
                             </select>
                         </div>
                     </div>
@@ -289,6 +305,8 @@
         var jumlah_orang = [];
         var durasi_pertemuan = [];
         var tanggal_pertemuan = [];
+        var waktu_pertemuan = [];
+        var zona = [];
         var harga = [];
 
         var pertemuan = $('#jumlah_pertemuan').val();
@@ -299,6 +317,8 @@
             jumlah_orang.push($('#jumlah_orang'+i).val());
             durasi_pertemuan.push($('#durasi_pertemuan'+i).val());
             tanggal_pertemuan.push($('#tanggal_pertemuan'+i).val());
+            waktu_pertemuan.push($('#waktu_pertemuan'+i).val());
+            zona.push($('#zona'+i).val());
             harga.push($('#harga'+i).val());
         }
 
@@ -311,7 +331,7 @@
             type: 'post',
             data:{_token:_token,last_price:last_price,jenjang_id:jenjang_id,kurikulum_id:kurikulum_id,mapel_id:mapel_id,
                 jumlah_orang:jumlah_orang,durasi_pertemuan:durasi_pertemuan,tanggal_pertemuan:tanggal_pertemuan,harga:harga,
-                pilihan_guru:pilihan_guru},
+                pilihan_guru:pilihan_guru,waktu_pertemuan:waktu_pertemuan,zona:zona},
             dataType: 'json',
             success: function(response){
                $('#button_lanjutkan_pembayaran').attr("disabled", false);

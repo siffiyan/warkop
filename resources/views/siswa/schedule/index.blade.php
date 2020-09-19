@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Schedule</h4>
+                        <h4 class="card-title">Jadwal Les</h4>
                     </div>
                     <div class="card-body">
                         <ul class="nav nav-tabs nav-tabs-solid nav-justified">

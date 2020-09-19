@@ -37,7 +37,10 @@
 </li>
 <li> 
     <a href="/admin/link_guru_meet"><span>Link Guru Meet</span></a>
-</li>       
+</li>
+<li> 
+    <a href="/admin/guru_terbaik"><span>Guru Terbaik</span></a>
+</li>        
 </ul>
 </div>
 </div>

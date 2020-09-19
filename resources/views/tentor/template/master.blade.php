@@ -1,3 +1,7 @@
+<?php
+	use App\Helpers\App;
+?>
+
 @include('tentor.template.header')
 
 <!-- Main Wrapper -->
@@ -20,6 +24,16 @@
 <div class="col-md-7 col-lg-8 col-xl-9">
 
 <div class="row">
+
+@if(App::get_completness(session('id')) != 100)
+<div class="col-md-12">
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<strong>Note !</strong> Silahkan Lengkapi Profil Andan Terlebih Dahulu
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+</button>
+</div>
+</div>
+@endif
 
 @yield('content')
 

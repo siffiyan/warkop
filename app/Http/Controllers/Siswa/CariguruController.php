@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Siswa;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -46,7 +47,14 @@ class CariguruController extends Controller
     public function action_filter($jenjang, $kurikulum, $mapel)
     {
 
-        $data['guru'] = DB::table('pilihan_mengajar_mitra as a')->join('mitra as b', '.a.mitra_id', '=', 'b.id')->where([['jenjang_id',$jenjang],['kurikulum_id', $kurikulum],['mapel_id', $mapel]])->get();
+        $data['guru'] = DB::table('pilihan_mengajar_mitra as a')
+                      ->join('mitra as b', '.a.mitra_id', '=', 'b.id')
+                      ->where([
+                        ['jenjang_id',$jenjang],
+                        ['kurikulum_id', $kurikulum],
+                        ['mapel_id', $mapel],
+                        ['complete',1]])
+                      ->get();
 
         return $data;
     }
@@ -119,6 +127,8 @@ class CariguruController extends Controller
        $jumlah_orang = $request->jumlah_orang;
        $durasi_pertemuan = $request->durasi_pertemuan;
        $tanggal_pertemuan = $request->tanggal_pertemuan;
+       $waktu_pertemuan = $request->waktu_pertemuan;
+       $zona = $request->zona;
        $harga = $request->harga;
 
        $pilihan_guru = $request->pilihan_guru;
@@ -137,11 +147,15 @@ class CariguruController extends Controller
        DB::table('transaksi')->where('id',$id)->update(["kode_transaksi" => $kode_transaksi]);
 
        foreach ($jumlah_orang as $key => $value) {
+
+        // $waktu_pertemuan[$key] = date_format($waktu_pertemuan[$key],"H:i:s");
            DB::table('transaksi_detail')->insert([
             'tanggal_pertemuan'=>$tanggal_pertemuan[$key],
             'jumlah_orang'=>$value,
             'durasi'=>$durasi_pertemuan[$key],
             'biaya'=>$harga[$key],
+            'waktu'=>$waktu_pertemuan[$key],
+            'zona'=>$zona[$key],
             'transaksi_id'=>$id
         ]);
        }

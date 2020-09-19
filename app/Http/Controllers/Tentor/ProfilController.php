@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tentor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use App\Helpers\App;
 use App\Models\Mitra;
 use App\Models\PengalamanMengajarMitra;
 use App\Models\PilihanMengajarMitra;
@@ -60,6 +61,10 @@ class ProfilController extends Controller
         }
 
         $data->update($change);
+
+        if(App::get_completness(session('id')) > 50){
+            $data->update(['complete'=>1]);
+        }
 
         return redirect('/tentor/profil')->with('msg','Data profil berhasil diedit');
     }

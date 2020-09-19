@@ -30,7 +30,9 @@ class BiayaLesController extends Controller
 
 	public function store(Request $request){
 
-		BiayaLes::create($request->all());
+		$data = $request->all();
+		$data['admin_id'] = session('id');
+		BiayaLes::create($data);
 		return redirect('/admin/setting/biaya_les')->with('msg','biaya les berhasil ditambahkan');
 
 	}

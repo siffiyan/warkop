@@ -44,7 +44,7 @@
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="text" class="form-control" name="email" value="{{$siswa->email}}" required>
+                                        <input type="text" class="form-control" name="email" value="{{$siswa->email}}" readonly="" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">

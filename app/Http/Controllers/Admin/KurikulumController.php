@@ -25,7 +25,9 @@ class KurikulumController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        Kurikulum::create($request->all());
+        $data = $request->all();
+        $data['admin_id'] = session('id');
+        Kurikulum::create($data);
 
         return redirect()->back()->with('msg', 'data kurikulum berhasil ditambahkan');
     }
@@ -50,6 +52,7 @@ class KurikulumController extends Controller
 
         $kurikulum = Kurikulum::findOrFail($id);
         $kurikulum->kurikulum = $request->kurikulum;
+        $kurikulum->admin_id = session('id');
         $kurikulum->update();
 
         return redirect()->back()->with('msg','data Kurikulum berhasil diedit');

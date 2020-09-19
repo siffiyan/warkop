@@ -82,6 +82,7 @@ class ManajemenUserController extends Controller
 
             $data = $request->except('role');
             $data['password'] = Hash::make($request->password);
+            $data['admin_id'] = session('id');
             Admin::create($data);
 
             return redirect('/admin/manajemen_user')->with('msg','data admin berhasil ditambahkan');
@@ -102,6 +103,7 @@ class ManajemenUserController extends Controller
             }
 
             $data = $request->except('role');
+            $data['admin_id'] = session('id');
             $data['password'] = Hash::make('mitracariguru');
             Mitra::create($data);
 

@@ -23,7 +23,9 @@ class AturDiskonController extends Controller
 
 	public function store(Request $request){
 
-		Diskon::create($request->all());
+		$data = $request->all();
+		$data['admin_id'] = session('id');
+		Diskon::create($data);
 		return redirect('/admin/setting/atur_diskon')->with('msg','kode promo berhasil di tambahkan');
 	}
 

@@ -112,8 +112,8 @@ Route::group(['middleware' => 'cek_siswa'], function () {
 	Route::get('logout','Siswa\AuthController@logout');
 
 	Route::get('dashboard','Siswa\DashboardController@index');
-	Route::get('profile','Siswa\DashboardController@profile')->name('siswa.profile');
-	Route::put('update_profile','Siswa\DashboardController@update_profile')->name('siswa.update_profile');
+	Route::get('profile','Siswa\ProfilController@index')->name('siswa.profile');
+	Route::put('update_profile','Siswa\ProfilController@update_profile')->name('siswa.update_profile');
 
 	Route::get('cariguru', 'Siswa\CariguruController@index');
 	Route::get('cariguru/filter/{jenjang}/{kurikulum}', 'Siswa\CariguruController@filter_mapel');

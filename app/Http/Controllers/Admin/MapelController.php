@@ -53,7 +53,9 @@ class MapelController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $insert = Mapel::create($request->all());
+        $data = $request->all();
+        $data['admin_id'] = session('id');
+        $insert = Mapel::create($data);
         if($insert){
             return redirect()->back()->with('msg','data Mata Pelajaran berhasil ditambahkan');
         }else{

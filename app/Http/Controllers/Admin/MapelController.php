@@ -93,9 +93,26 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id= $request->id;
+
+        $validator = Validator::make($request->all(), [
+            'mata_pelajaran' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput(); 
+        }
+
+        $mapel = Mapel::findOrFail($id);
+        $mapel->jenjang = $request->jenjang;
+        $mapel->kurikulum = $request->kurikulum;
+        $mapel->mata_pelajaran = $request->mata_pelajaran;
+        $mapel->admin_id = session('id');
+        $mapel->update();
+
+        return redirect()->back()->with('msg','data pelajaran berhasil diedit');
     }
 
     /**

@@ -113,7 +113,7 @@
 </div>
 
 <div class="modal" id="edit_mapel" tabindex="-1" role="dialog">
-    <form action="" method="post">
+    <form action="/admin/pembelajaran/mapel/update" method="post">
         @method('put');
         @csrf
         <div class="modal-dialog" role="document">
@@ -124,6 +124,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
+            <input type="hidden" name="id" id="id_edit">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-6 col-sm-6">
@@ -208,6 +209,7 @@
             type:'get',
             dataType:'json',
             success:function(response){
+                $('#id_edit').val(id);
                 $('#edit_mapel').modal('show');
                 $('#id_edit').val(id);
                 $('#list_jenjang').val(response.jenjang);

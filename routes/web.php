@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::prefix('admin')->group(function () {
 
 	Route::get('login','Admin\AuthController@login');
@@ -99,6 +98,7 @@ Route::group(['middleware' => 'cek_admin'], function () {
 Route::prefix('siswa')->group(function () {
 	
 	Route::get('login','Siswa\AuthController@login');
+	Route::get('verify','Siswa\AuthController@verify');
 	Route::post('login','Siswa\AuthController@login_action');
 	Route::get('register','Siswa\AuthController@register');
 	Route::post('register','Siswa\AuthController@register_action');

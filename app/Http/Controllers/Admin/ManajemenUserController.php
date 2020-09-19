@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Mail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -104,7 +105,23 @@ class ManajemenUserController extends Controller
             $data['password'] = Hash::make('mitracariguru');
             Mitra::create($data);
 
-            return redirect('/admin/manajemen_user')->with('msg','data mitra berhasil ditambahkan');
+            try{
+
+                Mail::send('tentor.auth.email', ['nama' => $request->nama,'email'=>$request->email], function ($message) use ($request){
+
+                $message->subject("[Cariguru] Informasi Akun Mitra Cariguru");
+                $message->from('cs.cariguru@gmail.com', 'Cariguru');
+                $message->to($request->email);
+
+                });
+
+               return redirect('/admin/manajemen_user')->with('msg','data mitra berhasil ditambahkan');
+
+            }
+
+            catch (Exception $e){
+                return redirect('/admin/manajemen_user')->with('msg','notifikasi akun mitra gagal dikirimkan');
+            }
 
         }
 

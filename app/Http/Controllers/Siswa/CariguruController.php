@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Siswa;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -42,7 +43,14 @@ class CariguruController extends Controller
     public function action_filter($jenjang, $kurikulum, $mapel)
     {
 
-        $data['guru'] = DB::table('pilihan_mengajar_mitra as a')->join('mitra as b', '.a.mitra_id', '=', 'b.id')->where([['jenjang_id',$jenjang],['kurikulum_id', $kurikulum],['mapel_id', $mapel]])->get();
+        $data['guru'] = DB::table('pilihan_mengajar_mitra as a')
+                      ->join('mitra as b', '.a.mitra_id', '=', 'b.id')
+                      ->where([
+                        ['jenjang_id',$jenjang],
+                        ['kurikulum_id', $kurikulum],
+                        ['mapel_id', $mapel],
+                        ['complete',1]])
+                      ->get();
 
         return $data;
     }

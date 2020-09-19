@@ -18,7 +18,7 @@ class DashboardController extends Controller
     public function index()
     {
         $data['blog'] = DB::table('blog')->where(['status' => 'approve', 'isactive' => '1'])->limit(3)->get();
-        $data['guru_terbaik'] = DB::table('mitra')->orderBy('penilaian', 'desc')->limit(10)->get();
+        $data['guru_terbaik'] = DB::table('mitra')->orderBy('penilaian', 'desc')->orderBy('poin','desc')->limit(10)->get();
         $data['count_mitra'] = DB::table('mitra')->count();
         $data['count_mapel'] = DB::table('mata_pelajaran')->count();
         $data['count_room'] = DB::table('transaksi_detail')->where('link_meeting','<>',null)->count();

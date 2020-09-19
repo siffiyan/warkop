@@ -26,6 +26,8 @@ Route::group(['middleware' => 'cek_admin'], function () {
 
 	Route::get('link_guru_meet','Admin\LinkGuruMeetController@index');
 
+	Route::get('aktivitas','Admin\AktivitasController@index')->name('aktivitas.index');
+
 	Route::get('manajemen_user','Admin\ManajemenUserController@index');
 	Route::delete('manajemen_user/delete','Admin\ManajemenUserController@destroy');
 	Route::get('manajemen_user/{id}/edit','Admin\ManajemenUserController@edit');

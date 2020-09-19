@@ -1,5 +1,9 @@
 @extends('siswa.template.master')
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('star/src/css/star-rating-svg.css')}}" >
+@endsection
+
 @section('content')
 
 <div class="col-md-12 col-lg-12 col-xl-12">
@@ -72,7 +76,8 @@
 </div>
 @endsection
 
-@section('js')
+@section('js') 
+    <script src="{{asset('star/src/jquery.star-rating-svg.js')}}"></script>
     <script>
         function evaluasi(id){
             $('#modal_evaluasi').modal('show');
@@ -89,6 +94,7 @@
                     $('#mitra_id').val(response.detail.mitra_id);
                     $('#transaksi_id').val(response.detail.id);
                     $('#penilaian').val(response.evaluasi.penilaian);
+                    $('#rating').starRating('setRating', response.evaluasi.penilaian);
                     $('#keterangan').val(response.evaluasi.keterangan);
                 },
                 error:function(){
@@ -97,6 +103,22 @@
 
             });
         }
+
+        $(".my-rating-6").starRating({
+            totalStars: 10,
+            starSize: 25,
+            starShape: 'rounded',
+            emptyColor: 'lightgray',
+            hoverColor: 'salmon',
+            activeColor: 'cornflowerblue',
+            strokeWidth: 0,
+            useGradient: false,
+            disableAfterRate: false,
+            minRating: 1,
+            callback: function(currentRating, $el){
+                $('#penilaian').val(currentRating);
+            }
+        });
     </script>
 @endsection
 
@@ -114,9 +136,7 @@
                         <div class="card-body">
                             <div class="pro-widget-content">
                                 <div class="profile-info-widget">
-                                   
                                         <img id="image" width="100px" alt="User Image">
-                                 
                                     <div class="profile-det-info">
                                         <h3 id="nama"></h3>
                                         <div class="mentee-details">
@@ -133,12 +153,14 @@
                                 <ul>
                                     <li>
                                         <div class="form-group">
+                                            <input type="text" id="penilaian" name="penilaian">
                                             <label>Penilaian (Range 1 - 10)</label>
-                                            <select name="penilaian" id="penilaian" class="form-control">
+                                            <div class="my-rating-6" id="rating" data-rating="0"></div>
+                                            {{-- <select name="penilaian" id="penilaian" class="form-control">
                                                 @for($i=1;$i<=5;$i++)
                                                     <option value="{{$i}}">Bintang {{$i}}</option>
                                                 @endfor
-                                            </select>
+                                            </select> --}}
                                         </div>
                                     </li>
                                     <li>

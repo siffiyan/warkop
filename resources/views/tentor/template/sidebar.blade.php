@@ -35,6 +35,7 @@
 			<li><a href="/tentor/schedule"  @if(Request::segment(2) == 'schedule')class="active" @endif><i class="fas fa-user"></i>Schedule <span><i class="fas fa-chevron-right"></i></span></a></li>
 			<li><a href="/tentor/evaluasi"  @if(Request::segment(2) == 'evaluasi')class="active" @endif><i class="fas fa-user"></i>Evaluasi Belajar <span><i class="fas fa-chevron-right"></i></span></a></li>
 			<li><a href="{{route('tentor.pencairan.index')}}"  @if(Request::segment(2) == 'pencairan')class="active" @endif><i class="fas fa-wallet"></i>Pencairan Dana <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a href="{{route('tentor.bank.index')}}"  @if(Request::segment(2) == 'bank')class="active" @endif><i class="fas fa-wallet"></i>Bank <span><i class="fas fa-chevron-right"></i></span></a></li>
 			<li><a href="{{route('blog.index')}}"  @if(Request::segment(2) == 'blog')class="active" @endif><i class="fab fa-blogger-b"></i>Blog <span><i class="fas fa-chevron-right"></i></span></a></li>
 			<li><a href="/tentor/profil" @if(Request::segment(2) == 'profil')class="active" @endif><i class="fas fa-user-cog"></i>Profil <span><i class="fas fa-chevron-right"></i></span></a></li>
 		</ul>

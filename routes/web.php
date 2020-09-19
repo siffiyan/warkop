@@ -91,6 +91,10 @@ Route::group(['middleware' => 'cek_admin'], function () {
 		Route::put('reject/{id}', 'Admin\BlogController@reject');
 	});
 
+	Route::get('pencairan','Admin\PencairanController@index')->name('admin.pencairan.index');
+	Route::put('pencairan/approve','Admin\PencairanController@approve')->name('admin.pencairan.approve');
+	Route::put('pencairan/reject','Admin\PencairanController@reject')->name('admin.pencairan.reject');
+
 });
 
 });
@@ -145,7 +149,7 @@ Route::group(['middleware' => 'cek_tentor'], function () {
 	Route::get('ubah_password','Tentor\AuthController@ubah_password');
 	Route::put('ubah_password_action','Tentor\AuthController@ubah_password_action');
 
-		Route::resource('blog', 'Tentor\BlogController');
+	Route::resource('blog', 'Tentor\BlogController');
 
 	Route::get('dashboard','Tentor\DashboardController@index');
 
@@ -183,6 +187,12 @@ Route::group(['middleware' => 'cek_tentor'], function () {
 
 	Route::get('pencairan','Tentor\PencairanController@index')->name('tentor.pencairan.index');
 	Route::post('pencairan','Tentor\PencairanController@store')->name('tentor.pencairan.store');
+
+	Route::get('bank','Tentor\BankController@index')->name('tentor.bank.index');
+	Route::post('bank','Tentor\BankController@store')->name('tentor.bank.store');
+	Route::get('bank/detail/{id}','Tentor\BankController@detail');
+	Route::put('bank/update','Tentor\BankController@update')->name('tentor.bank.update');
+	Route::delete('bank/delete','Tentor\BankController@delete')->name('tentor.bank.delete');
 
 	Route::prefix('blog')->group(function() {
 		Route::delete('delete','Tentor\BlogController@destroy');

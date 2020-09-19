@@ -25,11 +25,25 @@
   <link href="{{asset('template/frontend/vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
   <link href="{{asset('template/frontend/vendor/aos/aos.css')}}" rel="stylesheet">
   <link href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{asset('star/src/css/star-rating-svg.css')}}">
  
 
   <!-- Template Main CSS File -->
   <link href="{{asset('template/public_frontend/css/style.css')}}" rel="stylesheet">
 
+  <style>
+    .parent {
+   width: 150px; /* I took the width from your post and placed it in css */
+   height: 200px;
+   margin-left:50px;
+}
+
+/* This will style any <img> element in .parent div */
+.parent img {
+   height: 100%;
+   width: 100%;
+}
+  </style>
 </head>
 
 <body>
@@ -205,14 +219,14 @@
                 <td>
                   <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon"><i class="bx bx-gift"></i></div>
-                    <h4 class="title"><a href="">0</a></h4>
+                    <h4 class="title"><a href="">{{$count_mitra}}</a></h4>
                     <p class="description">Pilihan Guru</p>
                   </div>
                 </td>
                 <td>
                   <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon"><i class="bx bx-gift"></i></div>
-                    <h4 class="title"><a href="">0</a></h4>
+                    <h4 class="title"><a href="">{{$count_room}}</a></h4>
                     <p class="description">Room Meet</p>
                   </div>
                 </td>
@@ -221,14 +235,14 @@
                 <td>
                   <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon"><i class="bx bx-gift"></i></div>
-                    <h4 class="title"><a href="">0</a></h4>
+                    <h4 class="title"><a href="">{{$count_mapel}}</a></h4>
                     <p class="description">Mata Pelajaran</p>
                   </div>
                 </td>
                 <td>
                   <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon"><i class="bx bx-gift"></i></div>
-                    <h4 class="title"><a href="">0</a></h4>
+                    <h4 class="title"><a href="">{{$count_provinsi}}</a></h4>
                     <p class="description">Provinsi</p>
                   </div>
                 </td>
@@ -253,87 +267,19 @@
         </div>
   
         <div class="row">
-  
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
-            <div class="member">
-              <div class="pic"><img src="{{asset('logo/team/team-1.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+
+          @foreach ($guru_terbaik as $item)
+            <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+              <div class="member">
+                <div class="parent"><img src="{{asset('foto_guru/'.$item->foto_profil)}}" height="100px" width="150px" class="img-fluid" alt=""></div>
+                <div class="member-info">
+                  <h4>{{$item->nama}}</h4>
+                  <div class="my-rating-4" data-rating="{{$item->penilaian}}"></div>
+                </div>
               </div>
             </div>
-          </div>
-  
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <div class="pic"><img src="{{asset('logo/team/team-2.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <div class="pic"><img src="{{asset('logo/team/team-3.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <div class="pic"><img src="{{asset('logo/team/team-4.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
-            <div class="member">
-              <div class="pic"><img src="{{asset('logo/team/team-1.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <div class="pic"><img src="{{asset('logo/team/team-2.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <div class="pic"><img src="{{asset('logo/team/team-3.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <div class="pic"><img src="{{asset('logo/team/team-4.jpg')}}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-              </div>
-            </div>
-          </div>
-  
+          @endforeach
+
         </div>
   
       </div>
@@ -467,9 +413,23 @@
   <script src="{{asset('template/frontend/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
   <script src="{{asset('template/frontend/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
   <script src="{{asset('template/frontend/vendor/aos/aos.js')}}"></script>
+  <script src="{{asset('star/src/jquery.star-rating-svg.js')}}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{asset('template/public_frontend/js/main.js')}}"></script>
+
+  <script>
+    $(".my-rating-4").starRating({
+      totalStars: 5,
+      starShape: 'rounded',
+      readOnly: true,
+      starSize: 25,
+      emptyColor: 'lightgray',
+      hoverColor: 'salmon',
+      activeColor: 'crimson',
+      useGradient: false
+    });
+  </script>
 
 </body>
 

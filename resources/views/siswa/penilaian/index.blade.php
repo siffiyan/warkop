@@ -126,7 +126,7 @@
                                 </div>
                             </div>
                             <form action="{{route('penilaian.store')}}" method="POST">
-                            <input type="text" name="transaksi_id" id="transaksi_id">
+                            <input type="hidden" name="transaksi_id" id="transaksi_id">
                             <input type="hidden" name="mitra_id" id="mitra_id">
                             @csrf
                             <div class="mentee-info">

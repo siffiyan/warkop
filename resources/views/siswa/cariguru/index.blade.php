@@ -1,5 +1,9 @@
 @extends('siswa.template.master')
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('star/src/css/star-rating-svg.css')}}">
+@endsection
+
 @section('content')
 
 <form action="/siswa/cariguru/checkout" method="post">
@@ -111,7 +115,7 @@
 @endsection
 
 @section('js')
-
+<script src="{{asset('star/src/jquery.star-rating-svg.js')}}"></script>
     <script>
 
         var temp = "";
@@ -200,7 +204,7 @@
                 success: function( data, textStatus, jQxhr ){
                     
                     $('#place_filter').show();
-
+                    $a = 0;
                     $('#card-guru').empty();
                     if (!$.trim(data.guru)){   
                             $('#card-guru').html(`
@@ -223,25 +227,16 @@
                                                 <div class="user-info-cont">
                                                     <h4 class="usr-name"><a href="/siswa/cariguru/profil_tentor/`+value.id+`">`+value.nama+`</a></h4>
                                                     <p class="mentor-type">`+value.nama_institusi+`</p>
-                                                    <div class="rating">
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <span class="d-inline-block average-rating">(17)</span>
-                                                    </div>
-                                                    <div class="mentor-details">
-                                                        <p class="user-location"><i class="fas fa-map-marker-alt"></i> Florida, USA</p>
-                                                    </div>
+      
+                                                    <div class="my-rating-${$a}" data-rating="`+value.penilaian+`"></div>
                                                 </div>
                                             </div>
                                             <div class="user-info-right">
                                                 <div class="user-infos">
                                                     <ul>
-                                                        <li><i class="far fa-comment"></i> 17 Feedback</li>
-                                                        <li><i class="fas fa-map-marker-alt"></i> Florida, USA</li>
-                                                        <li><i class="far fa-money-bill-alt"></i> $300 - $1000 <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i> </li>
+                                                        <li><i class="far fa-comment"></i> `+value.feedback+` Feedback</li>
+                                                        <li><i class="fas fa-map-marker-alt"></i> `+value.alamat_domisili+`</li>
+                                                        <li><i class="far fa-money-bill-alt"></i> Rp.100.000/Meet <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i> </li>
                                                     </ul>
                                                 </div>
                                                 <div class="mentor-booking">
@@ -252,6 +247,19 @@
                                     </div>
                                 </div>
                             `);
+
+                            $(".my-rating-"+$a).starRating({
+                                totalStars: 5,
+                                starShape: 'rounded',
+                                readOnly: true,
+                                starSize: 25,
+                                emptyColor: 'lightgray',
+                                hoverColor: 'salmon',
+                                activeColor: 'crimson',
+                                useGradient: false
+                            });
+
+                            $a++;
                        
                         });
                     }

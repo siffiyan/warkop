@@ -27,6 +27,9 @@
     </ul>
 </li>
 <li> 
+    <a href="{{route('admin.pencairan.index')}}"><span>Pencairan Dana</span></a>
+</li> 
+<li> 
     <a href="/admin/blog/dashboard"><span>Blog</span></a>
 </li>  
 <li> 

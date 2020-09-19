@@ -16,7 +16,7 @@
 <i class="fe fe-users"></i>
 </span>
 <div class="dash-count">
-<h3>{{$admin->count()}}</h3>
+<h3>0</h3>
 </div>
 </div>
 <div class="dash-widget-info">
@@ -37,7 +37,7 @@
 <i class="fe fe-user"></i>
 </span>
 <div class="dash-count">
-<h3>{{$murid->count()}}</h3>
+<h3>0</h3>
 </div>
 </div>
 <div class="dash-widget-info">
@@ -59,7 +59,7 @@
 <i class="fe fe-star-o"></i>
 </span>
 <div class="dash-count">
-<h3>{{$mitra->count()}}</h3>
+<h3>0</h3>
 </div>
 </div>
 <div class="dash-widget-info">
@@ -85,7 +85,6 @@
 </div>
 </div>
 <div class="dash-widget-info">
-
 <h6 class="text-muted">Transaksi</h6>
 <div class="progress progress-sm">
 <div class="progress-bar bg-warning w-50"></div>
@@ -94,71 +93,44 @@
 </div>
 </div>
 </div>
-</div>	
+
+<div class="col-md-12 col-lg-12 col-xl-12">
+	<div class="card card-chart">
+		<div class="card-header">
+			<h4 class="card-title">Revenue</h4>
+		</div>
+		<div class="card-body">
+			<canvas id="myChart"></canvas>
+		</div>
+	</div>
+</div>
 
 
 @endsection
 
 @section('js')
-
-<script src="{{asset('template/mentoring/html/admin/assets/plugins/morris/morris.min.js')}}"></script>  
-
-<script type="text/javascript">
-
-	$(document).ready(function(){
-	
-	/* Morris Area Chart */
-	
-	window.mA = Morris.Area({
-	    element: 'morrisArea',
-	    data: [
-	        { y: '2013', a: 60},
-	        { y: '2014', a: 100},
-	        { y: '2015', a: 240},
-	        { y: '2016', a: 120},
-	        { y: '2017', a: 80},
-	        { y: '2018', a: 100},
-	        { y: '2019', a: 300},
-	    ],
-	    xkey: 'y',
-	    ykeys: ['a'],
-	    labels: ['Revenue'],
-	    lineColors: ['#1b5a90'],
-	    lineWidth: 2,
 		
-     	fillOpacity: 0.5,
-	    gridTextSize: 10,
-	    hideHover: 'auto',
-	    resize: true,
-		redraw: true
-	});
-	
-	/* Morris Line Chart */
-	
-	window.mL = Morris.Line({
-	    element: 'morrisLine',
-	    data: [
-	        { y: '2015', a: 100, b: 30},
-	        { y: '2016', a: 20,  b: 60},
-	        { y: '2017', a: 90,  b: 120},
-	        { y: '2018', a: 50,  b: 80},
-	        { y: '2019', a: 120,  b: 150},
-	    ],
-	    xkey: 'y',
-	    ykeys: ['a', 'b'],
-	    labels: ['Doctors', 'Patients'],
-	    lineColors: ['#1b5a90','#ff9d00'],
-	    lineWidth: 1,
-	    gridTextSize: 10,
-	    hideHover: 'auto',
-	    resize: true,
-		redraw: true
-	});
-	$(window).on("resize", function(){
-		mA.redraw();
-		mL.redraw();
-	});
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+<script>
 
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: {!! $bulan !!},
+        datasets: [{
+            label: 'Pendapatan',
+            backgroundColor: 'rgb(93, 173, 226, 0.3)',
+            borderColor: 'rgb(93, 173, 226)',
+            data: {{$saldo}}
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
 });
 </script>
 @endsection

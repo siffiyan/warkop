@@ -178,6 +178,12 @@ class BlogController extends Controller
             'keterangan' => 'Berhasil Approve Blog',
         ]);
 
+        $cek = DB::table('mitra')->where('id',$request->mitra_id)->first();
+
+        $sum = $cek->poin + 2;
+
+        DB::table('mitra')->where('id',$request->mitra_id)->update(['poin' => $sum]);
+
         return json_encode([
             "code" => 200,
             "response" => 'data Blog berhasil di Approve',

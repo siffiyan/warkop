@@ -49,6 +49,15 @@ class PenilaianController extends Controller
 
         DB::table('transaksi_detail')->where('id',$request->transaksi_id)->update(["evaluasi_mitra" => $request->penilaian]);
 
+        $cek = DB::table('transaksi_detail')
+                    ->where('mitra_id',$request->mitra_id)
+                    ->where('evaluasi_murid','!=','0')
+                    ->select(DB::raw('SUM(evaluasi_mitra) as total,COUNT(evaluasi_mitra) as count'))->first();
+        
+        $perhitungan = $cek->total / $cek->count;
+
+        DB::table('mitra')->where('id',$request->mitra_id)->update(['penilaian' => $perhitungan]);
+
         return redirect()->back()->with('msg','Data Penilaian berhasil disimpan');
     }
 }

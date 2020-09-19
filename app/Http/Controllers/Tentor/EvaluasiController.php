@@ -54,4 +54,5 @@ class EvaluasiController extends Controller
 
         return redirect()->back()->with('msg','Data Evaluasi belajar berhasil disimpan');
     }
+
 }

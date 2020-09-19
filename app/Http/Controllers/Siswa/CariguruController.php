@@ -23,7 +23,11 @@ class CariguruController extends Controller
         $data['jenjang'] = Jenjang::all();
         $data['kurikulum'] = Kurikulum::all();
         $data['mapel'] = Mapel::all();
-        $data['guru'] = Mitra::all();
+        $data['guru'] = DB::table('mitra as a')
+                            ->leftJoin('evaluasi_mitra as b','a.id','b.mitra_id')
+                            ->select('a.*',DB::raw("if(count(b.id)>0,count(b.id),'0') as feedback"))
+                            ->groupBy('a.id')
+                            ->get();
 
         return view('siswa.cariguru.index',$data);
     }

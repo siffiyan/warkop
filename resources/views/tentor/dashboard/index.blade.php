@@ -2,8 +2,44 @@
 
 @section('content')
 
+<div class="col-xl-6 col-sm-6 col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="dash-widget-header">
+                <div class="dash-count">
+                    <h3>Saldo</h3>
+                </div>
+            </div>
+            <div class="dash-widget-info">
+                <h5 class="text-muted float-right">{{"Rp " . number_format($saldoFirst->saldo,2,',','.')}}</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-6 col-sm-6 col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="dash-widget-header">
+                <div class="dash-count">
+                    <h3>Penarikan</h3>
+                </div>
+            </div>
+            <div class="dash-widget-info">
+                <h5 class="text-muted float-right">{{"Rp " . number_format($jumlah->jumlah,2,',','.')}}</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="col-md-12 col-lg-12 col-xl-12">
     <canvas id="myChart"></canvas>
+    
+    <form action="">
+        <input type="file" id="file" class="form-control">
+        <button type="submit" id="upload" class="btn btn-danger">Add</button>
+    </form>
 </div>
 
 
@@ -12,21 +48,35 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
+$('#upload').click(function(e){
+    e.preventDefault();
+   if( $('#file').val() != ""){
+       // file selected
+   }
+   else{
+       alert('error');
+   }
+});
+
+var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
 
     // The data for our dataset
     data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: {!! $bulan !!},
         datasets: [{
             label: 'My Saldo',
-            data: [0, 10, 5, 2, 20, 30, 45]
+            backgroundColor: 'rgb(93, 173, 226, 0.3)',
+            borderColor: 'rgb(93, 173, 226)',
+            data: {{$saldo}}
         },
         {
-            label: 'My Saldo',
-            data: [0, 15, 10, 21, 20, 30, 45]
+            label: 'Penarikan',
+            backgroundColor: 'rgb(255, 99, 132, 0.3)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: {{$penarikan}}
         },
         ]
     },

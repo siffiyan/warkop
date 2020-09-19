@@ -26,11 +26,11 @@
 		</script> -->
 
 		<!-- Circle Progress JS -->
-		<script src="{{asset('template/mentoring/html/assets/js/circle-progress.min.js')}}"></script>
+		{{-- <script src="{{asset('template/mentoring/html/assets/js/circle-progress.min.js')}}"></script> --}}
 
 		<!-- Sticky Sidebar JS -->
         <script src="{{asset('template/mentoring/html/assets/plugins/theia-sticky-sidebar/ResizeSensor.js')}}"></script>
-		<script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+		<script src="{{asset('template/mentoring/html/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js')}}"></script>
 		
 		<!-- Custom JS -->
 		<script  src="{{asset('template/mentoring/html/admin/assets/js/script.js')}}"></script>

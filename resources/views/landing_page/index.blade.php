@@ -257,10 +257,10 @@
       </div>
     </section>
     <!-- End About Us Section -->
-  
+    
+    @if ($guru_terbaik->count() > 0)
     <section id="guruterbaik" class="team">
       <div class="container">
-  
         <div class="section-title">
           <h2>Guru Pilihan</h2>
           <p>Beberapa Guru Terbaik Kami</p>
@@ -284,6 +284,7 @@
   
       </div>
     </section>
+    @endif
   
     <section id="meet" class="about">
       <div class="container">
@@ -313,7 +314,8 @@
   
       </div>
     </section>
-  
+    
+    @if ($blog->count() > 0)
     <section id="portfolio" class="portfolio">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
   
@@ -342,7 +344,7 @@
   
       </div>
     </section>
-    
+    @endif
   </main>
 
   <!-- ======= Footer ======= -->

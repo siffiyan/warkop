@@ -41,6 +41,9 @@
 <li> 
     <a href="/admin/guru_terbaik"><span>Guru Terbaik</span></a>
 </li>        
+<li> 
+    <a href="{{route('aktivitas.index')}}"><span>Aktivitas Terbaru</span></a>
+</li>        
 </ul>
 </div>
 </div>

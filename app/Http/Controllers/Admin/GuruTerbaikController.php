@@ -14,7 +14,7 @@ class GuruTerbaikController extends Controller
 
     public function index()
     {	
-    	$data['guru'] = DB::table('mitra')->where('complete',1)->get();
+    	$data['guru'] = DB::table('mitra')->where('complete',1)->orderBy('penilaian', 'desc')->orderBy('poin','desc')->limit(10)->get();
         return view('admin.guru_terbaik.index',$data);
     }
 

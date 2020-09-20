@@ -6,16 +6,11 @@
 <div class="profile-sidebar">
 	<div class="user-widget">
 		<div class="pro-avatar">JD</div>
-		<div class="rating">
-			<i class="fas fa-star filled"></i>
-			<i class="fas fa-star filled"></i>
-			<i class="fas fa-star filled"></i>
-			<i class="fas fa-star filled"></i>
-			<i class="fas fa-star"></i>
-		</div>
-		<div class="user-info-cont">
+		<div class="my-rating" data-rating="<?php echo App::get_rating(session('id')) ?>"></div>
+		<div class="user-info-cont mt-2">
 			<h4 class="usr-name">{{ session()->get('nama')}}</h4>
 			<p class="mentor-type">Mentor</p>
+			<p style="margin-top:-5px">( <?php echo App::get_poin(session('id'))?> Point ) </p>
 		</div>
 	</div>
 

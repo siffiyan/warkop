@@ -113,6 +113,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 <script>
 
+var awe = new Array();
+
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -125,13 +127,13 @@ var chart = new Chart(ctx, {
             label: 'Pendapatan Admin',
             backgroundColor: 'rgb(93, 173, 226, 0.3)',
             borderColor: 'rgb(93, 173, 226)',
-            data: [{{$admin}}]
+            data: {{$data_admin}},
         },
         {
             label: 'Pendapatan Mitra',
             backgroundColor: 'rgb(255, 99, 132, 0.3)',
             borderColor: 'rgb(255, 99, 132)',
-            data: {{$mitra}}
+            data: {{$data_mitra}},
         }]
     },
 

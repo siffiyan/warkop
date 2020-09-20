@@ -14,9 +14,6 @@ class DashboardController extends Controller
 
     public function index()
     {	
-
-        $hasil = array();
-
         $nama_bulan = ['Januari','Febuari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
         $end = date('n');
 
@@ -52,6 +49,8 @@ class DashboardController extends Controller
     	$data['mitra'] = Mitra::all();
         $data['admin'] = Admin::all();
         $data['bulan'] = json_encode($bulan);
+        $data['data_admin'] = json_encode($admin,JSON_NUMERIC_CHECK);
+        $data['data_mitra'] = json_encode($mitra,JSON_NUMERIC_CHECK);
 
         return view('admin.dashboard.index',$data);
     }

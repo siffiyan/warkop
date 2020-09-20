@@ -17,12 +17,25 @@
          <!-- Datatables JS -->
 		<script src="{{asset('template/mentoring/html/admin/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 		<script src="{{asset('template/mentoring/html/admin/assets/plugins/datatables/datatables.min.js')}}"></script>
+
+		<script src="{{asset('star/src/jquery.star-rating-svg.js')}}"></script>
 		
 		<!-- Circle Progress JS -->
 		<!-- <script src="assets/js/circle-progress.min.js"></script> -->
 
 		<script type="text/javascript">
 			$('#tabel1').dataTable();
+
+			$(".my-rating").starRating({
+				totalStars: 5,
+				starShape: 'rounded',
+				readOnly: true,
+				starSize: 20,
+				emptyColor: 'lightgray',
+				hoverColor: 'salmon',
+				activeColor: 'crimson',
+				useGradient: false
+			});
 			
 		</script> 
 			

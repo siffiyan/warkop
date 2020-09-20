@@ -32,6 +32,18 @@ class App {
 
 		return $total;
 
-    }
+	}
+	
+	public static function get_rating($mitra_id)
+	{
+		$query = DB::table('mitra')->where('id',$mitra_id)->select('penilaian')->first();
+		return $query->penilaian;
+	}
+
+	public static function get_poin($mitra_id)
+	{
+		$query = DB::table('mitra')->where('id',$mitra_id)->select('poin')->first();
+		return $query->poin;
+	}
 
 }

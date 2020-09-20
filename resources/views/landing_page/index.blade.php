@@ -257,10 +257,10 @@
       </div>
     </section>
     <!-- End About Us Section -->
-  
+    
+    @if ($guru_terbaik->count() > 0)
     <section id="guruterbaik" class="team">
       <div class="container">
-  
         <div class="section-title">
           <h2>Guru Pilihan</h2>
           <p>Beberapa Guru Terbaik Kami</p>
@@ -275,6 +275,7 @@
                 <div class="member-info">
                   <h4>{{$item->nama}}</h4>
                   <div class="my-rating-4" data-rating="{{$item->penilaian}}"></div>
+                  <small class="text-white"> <b>{{round($item->penilaian,2)}}</b></small>
                 </div>
               </div>
             </div>
@@ -284,6 +285,7 @@
   
       </div>
     </section>
+    @endif
   
     <section id="meet" class="about">
       <div class="container">
@@ -302,19 +304,10 @@
         </div>
       </div>
     </section>
-  
-    <section class="counts section-bg">
-      <div class="container">
-  
-        <div class="row">
-  
-  
-        </div>
-  
-      </div>
-    </section>
-  
-    <section id="portfolio" class="portfolio">
+
+    
+    @if (count($blog) > 0)
+    <section id="portfolio " class="portfolio">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
   
         <div class="section-title">
@@ -328,12 +321,13 @@
             <div class="card" style="width: 18rem;">
                 <img src="{{asset('berkas/blog/'.$item->image)}}" class="card-img-top" style="height: 300px" alt="...">
                 <div class="card-body">
-                  <span class="badge badge-danger">{{$item->kategori}}</span>
-                  <small>{{date('d F Y', strtotime($item->created_at))}}</small>   
+                  <small>{{date('d F Y', strtotime($item->created_at))}}</small> 
+                  <small class="badge badge-danger">{{$item->kategori}}</small>
+                    
                   <br>
-                  <small style="float-right">By {{$item->created_by}}</small>
+                  <small style="float-right">By {{$item->created}}</small>
                   <h6 class="card-title"><b>{{$item->judul}}</b></h6>
-                  <a href="#"><small class="text-danger">Baca Selengkapnya...</small></a>
+                  <a href="{{route('blog.detail.front',$item->id)}}"><small class="text-danger">Baca Selengkapnya...</small></a>
                 </div>
               </div>
           </div>
@@ -342,7 +336,7 @@
   
       </div>
     </section>
-    
+    @endif
   </main>
 
   <!-- ======= Footer ======= -->

@@ -54,7 +54,6 @@ class BlogController extends Controller
 
         $data = $request->input('image');
         $photo = $request->file('image')->getClientOriginalName();
-        var_dump($request->file('image'));
         $destination = base_path() . '/public/berkas/blog';
         $request->file('image')->move($destination, $photo);
 
@@ -64,8 +63,7 @@ class BlogController extends Controller
                 'image' => $photo,
                 'kategori' => $request->kategori,
                 'content' => $request->content,
-                // 'created_by' => session()->get('id'),
-                'created_by' => 'admin',
+                'created_by' => session()->get('id'),
                 'role' => 'Super Admin',
                 'isactive' => '1',
             ]
@@ -125,7 +123,6 @@ class BlogController extends Controller
         if($request->hasfile('image')){
             $data = $request->input('image');
             $photo = $request->file('image')->getClientOriginalName();
-            var_dump($request->file('image'));
             $destination = base_path() . '/public/berkas/blog';
             $request->file('image')->move($destination, $photo);
             $blog->image = $photo;

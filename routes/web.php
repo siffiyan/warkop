@@ -205,4 +205,4 @@ Route::group(['middleware' => 'cek_tentor'], function () {
 });
 
 Route::resource('/','Dashboard\DashboardController');
-Route::view('/blog','landing_page.blog');
+Route::get('/blog/{id}','Dashboard\BlogController@detail')->name('blog.detail.front');

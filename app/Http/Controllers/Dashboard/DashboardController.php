@@ -17,7 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data['blog'] = DB::table('blog')->where(['status' => 'approve', 'isactive' => '1'])->limit(3)->get();
+        $data['blog'] = DB::select("SELECT *, IF(role = 'Super Admin',(SELECT nama FROM admin WHERE id = created_by),(SELECT nama FROM mitra WHERE id = created_by)) AS created FROM blog WHERE STATUS = 'approve' AND isactive = '1' LIMIT 3");
         $data['guru_terbaik'] = DB::table('mitra')->where('complete',1)->where('penilaian','<>',0)->orderBy('penilaian', 'desc')->orderBy('poin','desc')->limit(10)->get();
         $data['count_mitra'] = DB::table('mitra')->count();
         $data['count_mapel'] = DB::table('mata_pelajaran')->count();

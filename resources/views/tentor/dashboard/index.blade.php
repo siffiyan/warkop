@@ -70,7 +70,7 @@ var chart = new Chart(ctx, {
             label: 'My Saldo',
             backgroundColor: 'rgb(93, 173, 226, 0.3)',
             borderColor: 'rgb(93, 173, 226)',
-            data: {{$saldo}}
+            data: {{$total}}
         },
         {
             label: 'Penarikan',

@@ -105,7 +105,7 @@
         }
 
         $(".my-rating-6").starRating({
-            totalStars: 10,
+            totalStars: 5,
             starSize: 25,
             starShape: 'rounded',
             emptyColor: 'lightgray',

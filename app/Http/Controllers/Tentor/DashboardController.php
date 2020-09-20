@@ -13,13 +13,6 @@ class DashboardController extends Controller
 
     public function index()
     {	
-        // $data = DB::table('transaksi_detail')
-        //                 ->where('mitra_id',session()->get('id'))
-        //                 ->where('evaluasi_murid','<>','0')
-        //                 ->select(DB::raw("SUM(biaya-(SELECT SUM(jumlah) FROM pencairan_dana WHERE mitra_id = '6' AND STATUS = 'berhasil')) AS saldo, ((SELECT SUM(jumlah) FROM pencairan_dana WHERE mitra_id = '6' 
-        //                         AND STATUS = 'berhasil')) AS penarikan,MONTHNAME(tanggal_pertemuan)"))
-        //                 ->groupBy('month(tanggal_pertemuan)')
-        //                 ->get();
 
         $mitra_id = session()->get('id');
 

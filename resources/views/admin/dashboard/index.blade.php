@@ -125,13 +125,13 @@ var chart = new Chart(ctx, {
             label: 'Pendapatan Admin',
             backgroundColor: 'rgb(93, 173, 226, 0.3)',
             borderColor: 'rgb(93, 173, 226)',
-            data: []
+            data: [{{$admin}}]
         },
         {
             label: 'Pendapatan Mitra',
             backgroundColor: 'rgb(255, 99, 132, 0.3)',
             borderColor: 'rgb(255, 99, 132)',
-            data: []
+            data: {{$mitra}}
         }]
     },
 

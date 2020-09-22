@@ -228,8 +228,8 @@
                                                 <div class="user-info-cont">
                                                     <h4 class="usr-name"><a href="/siswa/cariguru/profil_tentor/`+value.id+`">`+value.nama+`</a></h4>
                                                     <p class="mentor-type">`+value.nama_institusi+`</p>
-      
-                                                    <div class="my-rating-${$a}" data-rating="`+value.penilaian+`"></div>
+                                                    <span class="my-rating-${$a}" data-rating="`+value.penilaian+`"></span> <span>(`+value.penilaian+`)</span> 
+                                                    
                                                 </div>
                                             </div>
                                             <div class="user-info-right">
@@ -253,7 +253,7 @@
                                 totalStars: 5,
                                 starShape: 'rounded',
                                 readOnly: true,
-                                starSize: 25,
+                                starSize: 15,
                                 emptyColor: 'lightgray',
                                 hoverColor: 'salmon',
                                 activeColor: 'crimson',

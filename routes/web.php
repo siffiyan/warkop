@@ -61,6 +61,8 @@ Route::group(['middleware' => 'cek_admin'], function () {
 
 	Route::prefix('pembelajaran')->group(function () {
 		
+		Route::get('evaluasi_belajar','Admin\EvaluasiBelajarController@index');
+
 		Route::get('jenjang','Admin\JenjangController@index');
 		Route::delete('jenjang','Admin\JenjangController@destroy');
 		Route::post('jenjang','Admin\JenjangController@store');

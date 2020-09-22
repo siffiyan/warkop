@@ -52,8 +52,8 @@
         </div>
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-solid nav-justified">
-                <li class="nav-item"><a class="nav-link active" href="#solid-justified-tab1" data-toggle="tab">Blog Mentor</a></li>
-                <li class="nav-item"><a class="nav-link" href="#solid-justified-tab2" data-toggle="tab">Blog Super Admin</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#solid-justified-tab1" data-toggle="tab">Guru</a></li>
+                <li class="nav-item"><a class="nav-link" href="#solid-justified-tab2" data-toggle="tab">Admin</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane show active" id="solid-justified-tab1">

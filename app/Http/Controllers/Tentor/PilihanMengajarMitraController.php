@@ -8,6 +8,8 @@ use App\Models\Mapel;
 use App\Models\Jenjang;
 use App\Models\Kurikulum;
 use App\Models\PilihanMengajarMitra;
+use App\Models\Mitra;
+use App\Helpers\App;
 
 class PilihanMengajarMitraController extends Controller
 {
@@ -17,6 +19,12 @@ class PilihanMengajarMitraController extends Controller
     	$data = $request->all();
     	$data['mitra_id'] = session('id');
     	PilihanMengajarMitra::create($data);
+
+        if(App::get_completness(session('id')) == 100){
+
+            $a = Mitra::where('id',session('id'))->first();
+            $a->update(['complete'=>1]);
+        }
 
     	return redirect('/tentor/profil')->with('msg','Pilihan Mengajar berhasil ditambahkan');
 
@@ -39,7 +47,7 @@ class PilihanMengajarMitraController extends Controller
     	$id = $request->id_pilihan_mengajar;
     	$data = PilihanMengajarMitra::find($id);
     	$data->update($request->except('id_pilihan_mengajar'));
-
+        
     	return redirect('/tentor/profil')->with('msg','Pilihan mengajar berhasil diedit');
 
     }

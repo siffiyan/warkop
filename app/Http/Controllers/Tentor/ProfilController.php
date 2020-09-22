@@ -62,7 +62,7 @@ class ProfilController extends Controller
 
         $data->update($change);
 
-        if(App::get_completness(session('id')) > 50){
+        if(App::get_completness(session('id')) == 100){
             $data->update(['complete'=>1]);
         }
 

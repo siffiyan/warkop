@@ -64,6 +64,15 @@
     
     <!-- List Guru -->
 
+    <div class="col-md-12 col-lg-8 col-xl-9">
+
+        <div id="card-guru">
+   
+        </div>
+
+    </div>
+
+    
     <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar" id="place_filter" style="display: none;">
 
     <div class="card search-filter">
@@ -95,14 +104,6 @@
     </div>
 
     
-
-    </div>
-
-    <div class="col-md-12 col-lg-8 col-xl-9">
-
-        <div id="card-guru">
-   
-        </div>
 
     </div>
 

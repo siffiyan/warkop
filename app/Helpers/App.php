@@ -49,7 +49,7 @@ class App {
 	public static function get_saldo($mitra_id)
 	{
 		$query = DB::table('transaksi_detail as a')
-					->select(DB::raw("(((SUM(biaya)*80/100)-(SELECT SUM(jumlah) FROM pencairan_dana WHERE status != 'ditolak'))) AS saldo"))
+					->select(DB::raw("(SUM(biaya)*80/100)-if((SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id') AS saldo"))
 					->where('evaluasi_murid','!=','0')
 					->first();
 

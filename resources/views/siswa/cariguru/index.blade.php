@@ -214,6 +214,7 @@
                             `);
                         }else{
                          $.each(data.guru,function(i,value){
+                             console.log(value);
                             $('#card-guru').append(`
                                 <div class="card">
                                     <div class="card-body">

@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="dash-widget-info">
-                <h5 class="text-muted float-right">{{"Rp " . number_format($saldoFirst->saldo,2,',','.')}}</h5>
+                <h5 class="text-muted float-right">{{"Rp " . number_format($saldoFirst,2,',','.')}}</h5>
             </div>
         </div>
     </div>
@@ -35,11 +35,6 @@
 
 <div class="col-md-12 col-lg-12 col-xl-12">
     <canvas id="myChart"></canvas>
-    
-    <form action="">
-        <input type="file" id="file" class="form-control">
-        <button type="submit" id="upload" class="btn btn-danger">Add</button>
-    </form>
 </div>
 
 
@@ -48,16 +43,6 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 <script>
-$('#upload').click(function(e){
-    e.preventDefault();
-   if( $('#file').val() != ""){
-       // file selected
-   }
-   else{
-       alert('error');
-   }
-});
-
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create

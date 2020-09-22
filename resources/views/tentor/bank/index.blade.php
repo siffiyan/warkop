@@ -3,6 +3,10 @@
 @section('content')
 <div class="col-md-12 col-lg-12 col-xl-12">
 
+    <div class="alert alert-warning alert-block">
+        <strong>Untuk Penarikan Selain Bank BCA anda akan dikenakan biaya Rp.6500,-</strong>
+    </div>
+
     @if ($message = Session::get('msg'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -22,7 +26,7 @@
 
     <button class="btn btn-danger mb-3" style="background-color:#E51453" onclick="add_bank()"> <i class="fa fa-plus"></i> Tambah Rekening</button>
     
-    
+    @if(count($rekening) > 0)
     <div class="row row-grid">
         @foreach ($rekening as $item)
         <div class="col-md-6 col-lg-4 col-xl-3">
@@ -52,6 +56,16 @@
         </div>
         @endforeach
     </div>
+    @else
+    <div class="row">
+        <div class="col-md-12">
+            <div style="border:2px dashed black;padding: 25px;text-align: center;">
+                Anda belum mengisi data bank
+            </div>
+        </div>
+    </div>
+    @endif
+    
 </div>
 @endsection
 
@@ -120,7 +134,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>No Rekening</label>
-                            <input type="text" class="form-control" name="nomor_rekening"required>
+                            <input type="number" class="form-control" name="nomor_rekening"required>
                         </div>
                     </div>   
                     <div class="col-sm-12">
@@ -173,7 +187,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>No Rekening</label>
-                            <input type="text" class="form-control" name="nomor_rekening" id="nomor_rekening" required>
+                            <input type="number" class="form-control" name="nomor_rekening" id="nomor_rekening" required>
                         </div>
                     </div>   
                     <div class="col-sm-12">

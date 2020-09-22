@@ -3,6 +3,10 @@
 @section('content')
     <div class="col-md-12 col-lg-12">
 
+        <div class="alert alert-warning alert-block">
+            <strong>Untuk Penarikan Selain Bank BCA anda akan dikenakan biaya Rp.6500,-</strong>
+        </div>
+
         @if ($message = Session::get('msg'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>

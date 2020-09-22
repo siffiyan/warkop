@@ -10,11 +10,14 @@ class PencairanController extends Controller
 {
     public function index()
     {
+        $mitra_id = session('id');
+
         $data['rekening'] = DB::table('rekening')->where('mitra_id',session()->get('id'))->get();
         $data['saldo'] = DB::table('transaksi_detail as a')
-                                ->select(DB::raw("((SUM(biaya)-(SELECT SUM(jumlah) FROM pencairan_dana WHERE status != 'ditolak'))*80/100) AS saldo"))
+                                ->select(DB::raw("(SUM(biaya)*80/100)-if((SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id')<>null,(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id'),0) as saldo"))
                                 ->where('evaluasi_murid','!=','0')
                                 ->first();
+
         $data['transaksi'] = DB::table('pencairan_dana as a')
                                     ->join('rekening as b','a.rekening_id','b.id')
                                     ->where('a.mitra_id',session()->get('id'))

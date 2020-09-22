@@ -34,6 +34,6 @@ class ScheduleController extends Controller
 
         DB::table('transaksi_detail')->where('id',$id)->update(['les' => 'YES']);
 
-        return redirect()->back()->with('msg','Anda telah melakukan les jangan lupa untuk segera memberikan penilaian kepada murid');
+        return redirect()->back()->with('msg','Anda telah melakukan les jangan lupa untuk segera memberikan penilaian kepada murid pada menu Evaluasi Belajar');
     }
 }

@@ -3,23 +3,22 @@
 @section('content')
 
 <div class="col-md-12 col-lg-12 col-xl-12">
-
     @if ($message = Session::get('msg'))
-<div class="alert alert-success alert-block">
-<button type="button" class="close" data-dismiss="alert">×</button>
-<strong>{{ $message }}</strong>
-</div>
-@endif
+        <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+        </div>
+    @endif
 
-@if ($errors->any())
-<div class="alert alert-danger">
-<ul>
-@foreach ($errors->all() as $error)
-<li>{{ $error }}</li>
-@endforeach
-</ul>
-</div>
-@endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h3 class="pb-3">Evaluasi Belajar</h3>
     <!-- Mentee List Tab -->
     <div class="tab-pane show active" id="mentee-list">
@@ -44,13 +43,13 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{date("d F Y",strtotime($item->tanggal_pertemuan))}}</td>
-                                <td class="text-center"><span class="pending">{{date("H:i:s",strtotime($item->tanggal_pertemuan))}}</span></td>
+                                <td class="text-center"><span class="pending">{{$item->waktu.' '.$item->zona}}</td>
                                 <td class="text-center">{{$item->durasi}} Menit</td>
                                 <td class="text-center">{{$item->jumlah_orang}}</td>
                                 <td>{{$item->judul}}</td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html">{{$item->nama}}<span>{{$item->email}}</span></a>				
+                                        <a href="profile.html">{{$item->nama}}</a>				
                                     </h2>
                                 </td>
                                 <td class="text-center">
@@ -126,8 +125,8 @@
                             <input type="hidden" name="murid_id" id="murid_id">
                             @csrf
                             <div class="mentee-info">
-                                <ul>
-                                    <li>
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Pemahaman (Range 1 - 10)</label>
                                             <select name="pemahaman" id="pemahaman" class="form-control">
@@ -136,8 +135,8 @@
                                                 @endfor
                                             </select>
                                         </div>
-                                    </li>
-                                    <li>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Konsentrasi (Range 1 - 10)</label>
                                             <select name="konsentrasi" id="konsentrasi" class="form-control">
@@ -146,17 +145,20 @@
                                                 @endfor
                                             </select>
                                         </div>
-                                    </li>
-                                    <li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Penilaian</label>
                                             <textarea name="penilaian" id="penilaian" cols="30" rows="5" class="form-control" required></textarea>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <button type="submit" class="btn btn-sm bg-primary btn-block text-white">Nilai</button>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div>
+                                    
+                                
+                                    <button type="submit" class="btn btn-sm bg-primary btn-block text-white">Nilai</button>
+                                
                             </div>
                             </form>
                         </div>

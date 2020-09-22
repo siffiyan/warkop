@@ -36,7 +36,7 @@
                                 <table class="table table-hover table-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th>MENTEE LISTS</th>
+                                            <th>NAMA</th>
                                             <th>MATA PELAJARAN</th>
                                             <th>TANGGAL</th>
                                             <th class="text-center">WAKTU</th>
@@ -48,13 +48,19 @@
                                         <tr>
                                             <td>
                                                 <h2 class="table-avatar">
-                                                    <a href="profile.html">{{$item->nama}}<span>{{$item->email}}</span></a>				
+                                                    <a href="profile.html">{{$item->nama}}</a>				
                                                 </h2>
                                             </td>
                                             <td>{{$item->judul}}</td>
                                             <td>{{date("d F Y",strtotime($item->tanggal_pertemuan))}}</td>
-                                            <td class="text-center"><span class="pending">{{date("H:i:s",strtotime($item->tanggal_pertemuan))}}</span></td>
-                                            <td class="text-center"><span class="badge badge-success">{{$item->status}}</span></td>
+                                            <td class="text-center"><span class="pending">{{$item->waktu.' '.$item->zona}}</span></td>
+                                            <td class="text-center">
+                                                @if($item->status == 'pending')
+                                                <span class="badge badge-success">Waiting Link</span>
+                                                @else
+                                                <span class="badge badge-success">{{$item->status}}</span>
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -69,7 +75,7 @@
                                 <table class="table table-hover table-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th>MENTEE LISTS</th>
+                                            <th>NAMA</th>
                                             <th>MATA PELAJARAN</th>
                                             <th>TANGGAL</th>
                                             <th class="text-center">WAKTU</th>
@@ -82,19 +88,19 @@
                                         <tr>
                                             <td>
                                                 <h2 class="table-avatar">
-                                                    <a href="profile.html">{{$item->nama}}<span>{{$item->email}}</span></a>				
+                                                    <a href="profile.html">{{$item->nama}}</a>				
                                                 </h2>
                                             </td>
                                             <td>{{$item->judul}}</td>
                                             <td>{{date("d F Y",strtotime($item->tanggal_pertemuan))}}</td>
-                                            <td class="text-center"><span class="pending">{{date("H:i:s",strtotime($item->tanggal_pertemuan))}}</span></td>
-                                            <td class="text-center"><span class="badge badge-success">{{$item->status}}</span></td>
+                                            <td class="text-center"><span class="pending">{{$item->waktu.' '.$item->zona}}</span></td>
+                                            <td class="text-center"><span class="badge badge-danger">Selesai</span></td>
                                             <td class="text-center">
                                                 @if($item->les == 'NO')
-                                                <button type="button" onclick="show_link('{{$item->link_meeting}}')" class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> View Link</button>
+                                                <button type="button" onclick="show_link('{{$item->link_meeting}}')" class="btn bg-info-light"><i class="far fa-eye"></i></button>
                                                 <button type="button" onclick="selesai_les('{{$item->id}}')" class="btn bg-success-light"><i class="fas fa-check"></i> </button>
                                                 @else
-                                                <button type="button" onclick="show_link('{{$item->link_meeting}}')" class="btn btn-sm bg-info-light" disabled><i class="far fa-eye"></i> View Link</button>
+                                                <button type="button" onclick="show_link('{{$item->link_meeting}}')" class="btn bg-info-light" disabled><i class="far fa-eye"></i></button>
                                                 <button type="button" onclick="selesai_les('{{$item->id}}')" class="btn bg-danger-light" disabled><i class="fas fa-check"></i> </button>
                                                 @endif
                                             </td>

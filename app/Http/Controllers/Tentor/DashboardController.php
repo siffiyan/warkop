@@ -29,7 +29,7 @@ class DashboardController extends Controller
                     ->where('mitra_id',session()->get('id'))
                     ->where('evaluasi_murid','<>','0')
                     ->whereMonth('transaksi_detail.created_at', '=', $month_number)
-                    ->select(DB::raw("(SUM(biaya)*80/100)-(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id') total,(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND MONTH(created_at) = '$month_number') AS penarikan"))
+                    ->select(DB::raw("(SUM(biaya)*80/100)-if((SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id')<>null,(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id'),0) total,(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND MONTH(created_at) = '$month_number') AS penarikan"))
                     ->get();
 
             if($query[0]->total){
@@ -53,10 +53,28 @@ class DashboardController extends Controller
         $data['total'] = json_encode($total,JSON_NUMERIC_CHECK);
         $data['penarikan'] = json_encode($penarikan,JSON_NUMERIC_CHECK);
 
-        $data['saldoFirst'] = DB::table('transaksi_detail as a')
-                                ->select(DB::raw("((SUM(biaya)-(SELECT SUM(jumlah) FROM pencairan_dana WHERE status != 'ditolak'))*80/100) AS saldo"))
+        $id = session('id');
+
+        $saldoTentor = DB::table('transaksi_detail')
+                                ->select(DB::raw("(SUM(biaya)*80/100) AS saldo"))
                                 ->where('evaluasi_murid','!=','0')
+                                ->where('mitra_id',$id)
                                 ->first();
+
+        $penarikan = DB::table('pencairan_dana')
+                            ->select(DB::raw("(SUM(jumlah)) as penarikan"))
+                            ->where('mitra_id',$id)
+                            ->where('status','<>','ditolak')
+                            ->first();
+        
+        if(empty($penarikan->penarikan)){
+            $a = 0;
+        }else{
+            $a = $penarikan->penarikan;
+        }
+
+        $data['saldoFirst'] = $saldoTentor->saldo;
+        $data['saldoFirst'] -= $a;
 
         $data['jumlah'] = DB::table('pencairan_dana as a')
                                     ->select(DB::raw('SUM(jumlah) as jumlah'))

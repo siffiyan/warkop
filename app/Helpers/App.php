@@ -46,4 +46,14 @@ class App {
 		return $query->poin;
 	}
 
+	public static function get_saldo($mitra_id)
+	{
+		$query = DB::table('transaksi_detail as a')
+					->select(DB::raw("(((SUM(biaya)*80/100)-(SELECT SUM(jumlah) FROM pencairan_dana WHERE status != 'ditolak'))) AS saldo"))
+					->where('evaluasi_murid','!=','0')
+					->first();
+
+		return $query->saldo;
+	}
+
 }

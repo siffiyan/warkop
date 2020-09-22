@@ -6,6 +6,8 @@
 <div class="profile-sidebar">
 	<div class="user-widget">
 		<div class="pro-avatar">JD</div>
+
+		<p><?php echo "Rp " . number_format(App::get_saldo(session('id')),2,',','.') ?></p>
 		<div class="my-rating" data-rating="<?php echo App::get_rating(session('id')) ?>"></div>
 		<div class="user-info-cont mt-2">
 			<h4 class="usr-name">{{ session()->get('nama')}}</h4>

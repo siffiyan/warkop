@@ -22,7 +22,7 @@
                                         <table class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>MENTEE LISTS</th>
+                                                    <th>NAMA</th>
                                                     <th>MATA PELAJARAN</th>
                                                     <th>TANGGAL</th>
                                                     <th class="text-center">WAKTU</th>
@@ -40,8 +40,14 @@
                                                     </td>
                                                     <td>{{$item->judul}}</td>
                                                     <td>{{date("d F Y",strtotime($item->tanggal_pertemuan))}}</td>
-                                                    <td class="text-center"><span class="pending">{{date("H:i:s",strtotime($item->tanggal_pertemuan))}}</span></td>
-                                                    <td class="text-center"><span class="badge badge-success">{{$item->status}}</span></td>
+                                                    <td class="text-center"><span class="pending">{{$item->waktu.' '.$item->zona}}</span></td>
+                                                    <td class="text-center">
+                                                        @if($item->status == 'pending')
+                                                            <span class="badge badge-success text-white">Waiting Link</span>
+                                                        @else
+                                                            <span class="badge badge-success text-white">{{$item->status}}</span>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -76,7 +82,7 @@
                                                     <td>{{$item->judul}}</td>
                                                     <td>{{date("d F Y",strtotime($item->tanggal_pertemuan))}}</td>
                                                     <td class="text-center"><span class="pending">{{date("H:i:s",strtotime($item->tanggal_pertemuan))}}</span></td>
-                                                    <td class="text-center"><span class="badge badge-success">{{$item->status}}</span></td>
+                                                    <td class="text-center"><span class="badge badge-danger">selesai</span></td>
                                                     <td class="text-center"><button type="button" onclick="show_link('{{$item->link_meeting}}')" class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> View Link</button></td>
                                                 </tr>
                                                 @endforeach

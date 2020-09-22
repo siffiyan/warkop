@@ -26,7 +26,7 @@ class CariguruController extends Controller
         $data['mapel'] = Mapel::all();
         $data['guru'] = DB::table('mitra as a')
                             ->leftJoin('evaluasi_mitra as b','a.id','b.mitra_id')
-                            ->select('a.*',DB::raw("if(count(b.id)>0,count(b.id),'0') as feedback"))
+                            ->select('a.*',DB::raw("if((count(b.id))<>null,count(b.id),'0') as feedback"))
                             ->groupBy('a.id')
                             ->get();
 
@@ -49,11 +49,14 @@ class CariguruController extends Controller
 
         $data['guru'] = DB::table('pilihan_mengajar_mitra as a')
                       ->join('mitra as b', '.a.mitra_id', '=', 'b.id')
+                      ->leftJoin('evaluasi_mitra as c','b.id','c.mitra_id')
+                      ->select('a.*','b.*',DB::raw("if((count(c.id))<>null,count(c.id),'0') as feedback"))
                       ->where([
                         ['jenjang_id',$jenjang],
                         ['kurikulum_id', $kurikulum],
                         ['mapel_id', $mapel],
                         ['complete',1]])
+                        ->groupBy('a.id')
                       ->get();
 
         return $data;

@@ -31,7 +31,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover table-center mb-0">
-                        <thead>
+                        <thead style="background: #e51453;color:white;">
                             <tr>
                                 <th>No</th>
                                 <th>Tanggal</th>
@@ -79,6 +79,9 @@
 @section('js') 
     <script src="{{asset('star/src/jquery.star-rating-svg.js')}}"></script>
     <script>
+
+    $('#table1').dataTable();
+
         function evaluasi(id){
             $('#modal_evaluasi').modal('show');
             $.ajax({
@@ -153,7 +156,7 @@
                                 <ul>
                                     <li>
                                         <div class="form-group">
-                                            <input type="text" id="penilaian" name="penilaian">
+                                            <input type="hidden" id="penilaian" name="penilaian">
                                             <label>Penilaian (Range 1 - 10)</label>
                                             <div class="my-rating-6" id="rating" data-rating="0"></div>
                                             {{-- <select name="penilaian" id="penilaian" class="form-control">

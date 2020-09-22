@@ -29,9 +29,8 @@
                                 <div class="invoice-info">
                                     <strong class="customer-text">Invoice From</strong>
                                     <p class="invoice-details invoice-details-two">
-                                        PT.Cariguru Indonesia<br>
-                                        Jl. Gayungsari Barat no 24<br>
-                                        Surabaya, Jawa Timur <br>
+                                        PT. Cari Inovasi Teknologi<br>
+                                        Kota Tanggerang<br>
                                     </p>
                                 </div>
                             </div>
@@ -137,68 +136,22 @@
 							<div class="col-md-3">
 								<div class="form-group card-label">
 									<label for="card_name">Bank</label>
-									<input class="form-control" id="card_name" value="BANK MANDIRI" type="text" readonly>
+									<input class="form-control" id="card_name" value="BANK BCA" type="text" readonly>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="form-group card-label">
 									<label for="card_number">No Rekening</label>
-									<input class="form-control" id="card_number" value="1234567889" type="text" readonly>
+									<input class="form-control" id="card_number" value="0511751101" type="text" readonly>
 								</div>
 							</div>
 							<div class="col-md-5">
 								<div class="form-group card-label">
 									<label for="card_number">Atas Nama</label>
-									<input class="form-control" id="card_number" value="PT. CARI GURU Tbk" type="text" readonly>
+									<input class="form-control" id="card_number" value="Mahyuddin Noor" type="text" readonly>
 								</div>
 							</div>
                         </div>
-                        <div class="row">
-							<div class="col-md-1 mt-4">
-								<img src="{{asset('bca.png')}}" width="100%"  alt="">
-							</div>
-							<div class="col-md-3">
-								<div class="form-group card-label">
-									<label for="card_name">Bank</label>
-									<input class="form-control" id="card_name" value="BANK MANDIRI" type="text" readonly>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group card-label">
-									<label for="card_number">No Rekening</label>
-									<input class="form-control" id="card_number" value="1234567889" type="text" readonly>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="form-group card-label">
-									<label for="card_number">Atas Nama</label>
-									<input class="form-control" id="card_number" value="PT. CARI GURU Tbk" type="text" readonly>
-								</div>
-							</div>
-                        </div>
-                        <div class="row">
-							<div class="col-md-1 mt-4">
-								<img src="{{asset('bca.png')}}" width="100%"  alt="">
-							</div>
-							<div class="col-md-3">
-								<div class="form-group card-label">
-									<label for="card_name">Bank</label>
-									<input class="form-control" id="card_name" value="BANK MANDIRI" type="text" readonly>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group card-label">
-									<label for="card_number">No Rekening</label>
-									<input class="form-control" id="card_number" value="1234567889" type="text" readonly>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="form-group card-label">
-									<label for="card_number">Atas Nama</label>
-									<input class="form-control" id="card_number" value="PT. CARI GURU Tbk" type="text" readonly>
-								</div>
-							</div>
-						</div>
                     </div>
                 </div>
             </div>

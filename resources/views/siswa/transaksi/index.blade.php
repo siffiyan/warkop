@@ -26,8 +26,12 @@
 <td class="text-center"> <b>{{$r->kode_transaksi}}</b> </td>
 <td>{{$r->judul}}</td>
 <td class="text-center">
-	<span class="reject">{{$r->status}}</span>
-	<a href="{{route('siswa.pembayaran.detail',$r->id)}}"><span class="pending" style="cursor: pointer">Info Pembayaran</span></a>
+	@if($r->status == 'berhasil')
+	<span class="pending" style="background-color: #5cb85c">{{$r->status}}</span>
+	@else
+	<span class="pending">{{$r->status}}</span>
+	@endif
+	<a href="{{route('siswa.pembayaran.detail',$r->id)}}" target="_blank"><span class="pending" style="background-color:#5bc0de;cursor: pointer">Info Pembayaran</span></a>
 </td>
 <td class="text-center">
 	<a href="{{route('siswa.pembayaran',$r->kode_transaksi)}}" class="btn btn-outline-primary active">Konfirmasi Pembayaran</a>

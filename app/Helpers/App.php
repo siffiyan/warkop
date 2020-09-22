@@ -51,6 +51,7 @@ class App {
 		$query = DB::table('transaksi_detail as a')
 					->select(DB::raw("(SUM(biaya)*80/100)-if((SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id')<>null,(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id'),0) as saldo"))
 					->where('evaluasi_murid','!=','0')
+					->where('mitra_id',$mitra_id)
 					->first();
 
 		return $query->saldo;

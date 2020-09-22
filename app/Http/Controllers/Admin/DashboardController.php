@@ -21,6 +21,12 @@ class DashboardController extends Controller
         $admin = array();
         $mitra = array();
 
+        $query = DB::table('transaksi_detail')
+                    ->where('evaluasi_murid','<>','0')
+                    ->whereMonth('transaksi_detail.created_at', '=', 9)
+                    ->select(DB::raw("(SUM(biaya)*20/100) as admin,(SUM(biaya)*80/100) as mitra"))
+                    ->get();
+
         for ($i=0; $i <$end ; $i++) { 
 
             $query = DB::table('transaksi_detail')
@@ -48,6 +54,7 @@ class DashboardController extends Controller
         $data['murid'] = Murid::all();
     	$data['mitra'] = Mitra::all();
         $data['admin'] = Admin::all();
+        $data['transaksi'] = DB::table('transaksi')->where('status','berhasil')->get();
         $data['bulan'] = json_encode($bulan);
         $data['data_admin'] = json_encode($admin,JSON_NUMERIC_CHECK);
         $data['data_mitra'] = json_encode($mitra,JSON_NUMERIC_CHECK);

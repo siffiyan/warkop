@@ -20,7 +20,7 @@
 <li class="submenu">
     <a href="#"><span> Pembelajaran</span></a>
     <ul style="display: none;">
-        <li><a href="invoice-report.html">Evaluasi Belajar</a></li>
+        <li><a href="/admin/pembelajaran/evaluasi_belajar">Evaluasi Belajar</a></li>
         <li><a href="/admin/pembelajaran/mapel">Mata Pelajaran</a></li>
         <li><a href="/admin/pembelajaran/jenjang">Jenjang</a></li>
         <li><a href="/admin/pembelajaran/kurikulum">Kurikulum</a></li>

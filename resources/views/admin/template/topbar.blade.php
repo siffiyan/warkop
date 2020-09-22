@@ -49,8 +49,6 @@
 									<p class="text-muted mb-0">Admin</p>
 								</div>
 							</div>
-							<a class="dropdown-item" href="profile.html">My Profile</a>
-							<a class="dropdown-item" href="settings.html">Settings</a>
 							<a class="dropdown-item" href="/admin/logout">Logout</a>
 						</div>
 					</li>

@@ -16,7 +16,7 @@
 <i class="fe fe-users"></i>
 </span>
 <div class="dash-count">
-<h3>0</h3>
+<h3>{{$admin->count()}}</h3>
 </div>
 </div>
 <div class="dash-widget-info">
@@ -37,7 +37,7 @@
 <i class="fe fe-user"></i>
 </span>
 <div class="dash-count">
-<h3>0</h3>
+<h3>{{$murid->count()}}</h3>
 </div>
 </div>
 <div class="dash-widget-info">
@@ -59,7 +59,7 @@
 <i class="fe fe-star-o"></i>
 </span>
 <div class="dash-count">
-<h3>0</h3>
+<h3>{{$mitra->count()}}</h3>
 </div>
 </div>
 <div class="dash-widget-info">
@@ -81,7 +81,7 @@
 <i class="fe fe-credit-card"></i>
 </span>
 <div class="dash-count">
-<h3>0</h3>
+<h3>{{$transaksi->count()}}</h3>
 </div>
 </div>
 <div class="dash-widget-info">

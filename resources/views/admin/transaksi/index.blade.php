@@ -24,7 +24,7 @@ color: #fff;
         </div>
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-solid nav-justified">
-            <li class="nav-item"><a class="nav-link active" href="#solid-justified-tab1" data-toggle="tab">Belum Dibayar ( {{$transaksi->where('status','menunggu_pembayaran')->count() }} )</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#solid-justified-tab1" data-toggle="tab">Belum Dibayar ( {{$transaksi->where('status','menunggu pembayaran')->count() }} )</a></li>
             <li class="nav-item"><a class="nav-link" href="#solid-justified-tab2" data-toggle="tab">Sudah Dibayar ( {{$transaksi->where('status','sudah_dibayar')->count() }} )</a></li>
             <li class="nav-item"><a class="nav-link" href="#solid-justified-tab3" data-toggle="tab">Pending ( {{$transaksi->where('status','pending')->count() }} )</a></li>
             <li class="nav-item"><a class="nav-link" href="#solid-justified-tab4" data-toggle="tab">Berhasil ( {{$transaksi->where('status','berhasil')->count() }} )</a></li>

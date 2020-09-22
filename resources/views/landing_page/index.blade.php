@@ -258,7 +258,7 @@
     </section>
     <!-- End About Us Section -->
     
-    @if ($guru_terbaik->count() > 0)
+    @if ($guru_terbaik->count() >= 4)
     <section id="guruterbaik" class="team">
       <div class="container">
         <div class="section-title">

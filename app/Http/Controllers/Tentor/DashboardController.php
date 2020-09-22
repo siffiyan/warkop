@@ -29,7 +29,7 @@ class DashboardController extends Controller
                     ->where('mitra_id',session()->get('id'))
                     ->where('evaluasi_murid','<>','0')
                     ->whereMonth('transaksi_detail.created_at', '=', $month_number)
-                    ->select(DB::raw("(SUM(biaya)*80/100)-if((SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id')<>null,(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id'),0) as total,(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND MONTH(created_at) = '$month_number') AS penarikan"))
+                    ->select(DB::raw("(SUM(biaya)*80/100)-if((SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id')<>null,(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND mitra_id = '$mitra_id'),0) as total,(SELECT SUM(jumlah) FROM pencairan_dana WHERE STATUS = 'berhasil' AND MONTH(created_at) = '$month_number' AND mitra_id = '$mitra_id') AS penarikan"))
                     ->get();
 
             if($query[0]->total){
